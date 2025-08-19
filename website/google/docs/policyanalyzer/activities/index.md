@@ -1,0 +1,164 @@
+--- 
+title: activities
+hide_title: false
+hide_table_of_contents: false
+keywords:
+  - activities
+  - policyanalyzer
+  - google
+  - infrastructure-as-code
+  - configuration-as-data
+  - cloud inventory
+description: Query, deploy and manage google resources using SQL
+custom_edit_url: null
+image: /img/stackql-google-provider-featured-image.png
+---
+
+import CopyableCode from '@site/src/components/CopyableCode/CopyableCode';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Creates, updates, deletes, gets or lists an <code>activities</code> resource.
+
+## Overview
+<table><tbody>
+<tr><td><b>Name</b></td><td><code>activities</code></td></tr>
+<tr><td><b>Type</b></td><td>Resource</td></tr>
+<tr><td><b>Id</b></td><td><CopyableCode code="google.policyanalyzer.activities" /></td></tr>
+</tbody></table>
+
+## Fields
+
+The following fields are returned by `SELECT` queries:
+
+<Tabs
+    defaultValue="query"
+    values={[
+        { label: 'query', value: 'query' }
+    ]}
+>
+<TabItem value="query">
+
+Response to the `QueryActivity` method.
+
+<table>
+<thead>
+    <tr>
+    <th>Name</th>
+    <th>Datatype</th>
+    <th>Description</th>
+    </tr>
+</thead>
+<tbody>
+<tr>
+    <td><CopyableCode code="activities" /></td>
+    <td><code>array</code></td>
+    <td>The set of activities that match the filter included in the request.</td>
+</tr>
+<tr>
+    <td><CopyableCode code="nextPageToken" /></td>
+    <td><code>string</code></td>
+    <td>If there might be more results than those appearing in this response, then `nextPageToken` is included. To get the next set of results, call this method again using the value of `nextPageToken` as `pageToken`.</td>
+</tr>
+</tbody>
+</table>
+</TabItem>
+</Tabs>
+
+## Methods
+
+The following methods are available for this resource:
+
+<table>
+<thead>
+    <tr>
+    <th>Name</th>
+    <th>Accessible by</th>
+    <th>Required Params</th>
+    <th>Optional Params</th>
+    <th>Description</th>
+    </tr>
+</thead>
+<tbody>
+<tr>
+    <td><a href="#query"><CopyableCode code="query" /></a></td>
+    <td><CopyableCode code="select" /></td>
+    <td><a href="#parameter-foldersId"><code>foldersId</code></a>, <a href="#parameter-locationsId"><code>locationsId</code></a>, <a href="#parameter-activityTypesId"><code>activityTypesId</code></a></td>
+    <td><a href="#parameter-filter"><code>filter</code></a>, <a href="#parameter-pageSize"><code>pageSize</code></a>, <a href="#parameter-pageToken"><code>pageToken</code></a></td>
+    <td>Queries policy activities on Google Cloud resources.</td>
+</tr>
+</tbody>
+</table>
+
+## Parameters
+
+Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#methods) section to see which parameters are required or optional for each operation.
+
+<table>
+<thead>
+    <tr>
+    <th>Name</th>
+    <th>Datatype</th>
+    <th>Description</th>
+    </tr>
+</thead>
+<tbody>
+<tr id="parameter-activityTypesId">
+    <td><CopyableCode code="activityTypesId" /></td>
+    <td><code>string</code></td>
+    <td></td>
+</tr>
+<tr id="parameter-foldersId">
+    <td><CopyableCode code="foldersId" /></td>
+    <td><code>string</code></td>
+    <td></td>
+</tr>
+<tr id="parameter-locationsId">
+    <td><CopyableCode code="locationsId" /></td>
+    <td><code>string</code></td>
+    <td></td>
+</tr>
+<tr id="parameter-filter">
+    <td><CopyableCode code="filter" /></td>
+    <td><code>string</code></td>
+    <td></td>
+</tr>
+<tr id="parameter-pageSize">
+    <td><CopyableCode code="pageSize" /></td>
+    <td><code>integer (int32)</code></td>
+    <td></td>
+</tr>
+<tr id="parameter-pageToken">
+    <td><CopyableCode code="pageToken" /></td>
+    <td><code>string</code></td>
+    <td></td>
+</tr>
+</tbody>
+</table>
+
+## `SELECT` examples
+
+<Tabs
+    defaultValue="query"
+    values={[
+        { label: 'query', value: 'query' }
+    ]}
+>
+<TabItem value="query">
+
+Queries policy activities on Google Cloud resources.
+
+```sql
+SELECT
+activities,
+nextPageToken
+FROM google.policyanalyzer.activities
+WHERE foldersId = '{{ foldersId }}' -- required
+AND locationsId = '{{ locationsId }}' -- required
+AND activityTypesId = '{{ activityTypesId }}' -- required
+AND filter = '{{ filter }}'
+AND pageSize = '{{ pageSize }}'
+AND pageToken = '{{ pageToken }}';
+```
+</TabItem>
+</Tabs>

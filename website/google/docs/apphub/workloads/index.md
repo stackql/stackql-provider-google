@@ -1,0 +1,478 @@
+--- 
+title: workloads
+hide_title: false
+hide_table_of_contents: false
+keywords:
+  - workloads
+  - apphub
+  - google
+  - infrastructure-as-code
+  - configuration-as-data
+  - cloud inventory
+description: Query, deploy and manage google resources using SQL
+custom_edit_url: null
+image: /img/stackql-google-provider-featured-image.png
+---
+
+import CopyableCode from '@site/src/components/CopyableCode/CopyableCode';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Creates, updates, deletes, gets or lists a <code>workloads</code> resource.
+
+## Overview
+<table><tbody>
+<tr><td><b>Name</b></td><td><code>workloads</code></td></tr>
+<tr><td><b>Type</b></td><td>Resource</td></tr>
+<tr><td><b>Id</b></td><td><CopyableCode code="google.apphub.workloads" /></td></tr>
+</tbody></table>
+
+## Fields
+
+The following fields are returned by `SELECT` queries:
+
+<Tabs
+    defaultValue="get"
+    values={[
+        { label: 'get', value: 'get' },
+        { label: 'list', value: 'list' }
+    ]}
+>
+<TabItem value="get">
+
+Workload is an App Hub data model that contains a discovered workload, which represents a binary deployment (such as managed instance groups (MIGs) and GKE deployments) that performs the smallest logical subset of business functionality.
+
+<table>
+<thead>
+    <tr>
+    <th>Name</th>
+    <th>Datatype</th>
+    <th>Description</th>
+    </tr>
+</thead>
+<tbody>
+<tr>
+    <td><CopyableCode code="name" /></td>
+    <td><code>string</code></td>
+    <td>Identifier. The resource name of the Workload. Format: `"projects/&#123;host-project-id&#125;/locations/&#123;location&#125;/applications/&#123;application-id&#125;/workloads/&#123;workload-id&#125;"`</td>
+</tr>
+<tr>
+    <td><CopyableCode code="attributes" /></td>
+    <td><code>object</code></td>
+    <td>Optional. Consumer provided attributes. (id: Attributes)</td>
+</tr>
+<tr>
+    <td><CopyableCode code="createTime" /></td>
+    <td><code>string (google-datetime)</code></td>
+    <td>Output only. Create time.</td>
+</tr>
+<tr>
+    <td><CopyableCode code="description" /></td>
+    <td><code>string</code></td>
+    <td>Optional. User-defined description of a Workload. Can have a maximum length of 2048 characters.</td>
+</tr>
+<tr>
+    <td><CopyableCode code="discoveredWorkload" /></td>
+    <td><code>string</code></td>
+    <td>Required. Immutable. The resource name of the original discovered workload.</td>
+</tr>
+<tr>
+    <td><CopyableCode code="displayName" /></td>
+    <td><code>string</code></td>
+    <td>Optional. User-defined name for the Workload. Can have a maximum length of 63 characters.</td>
+</tr>
+<tr>
+    <td><CopyableCode code="state" /></td>
+    <td><code>string</code></td>
+    <td>Output only. Workload state.</td>
+</tr>
+<tr>
+    <td><CopyableCode code="uid" /></td>
+    <td><code>string</code></td>
+    <td>Output only. A universally unique identifier (UUID) for the `Workload` in the UUID4 format.</td>
+</tr>
+<tr>
+    <td><CopyableCode code="updateTime" /></td>
+    <td><code>string (google-datetime)</code></td>
+    <td>Output only. Update time.</td>
+</tr>
+<tr>
+    <td><CopyableCode code="workloadProperties" /></td>
+    <td><code>object</code></td>
+    <td>Output only. Properties of an underlying compute resource represented by the Workload. These are immutable. (id: WorkloadProperties)</td>
+</tr>
+<tr>
+    <td><CopyableCode code="workloadReference" /></td>
+    <td><code>object</code></td>
+    <td>Output only. Reference of an underlying compute resource represented by the Workload. These are immutable. (id: WorkloadReference)</td>
+</tr>
+</tbody>
+</table>
+</TabItem>
+<TabItem value="list">
+
+Response for ListWorkloads.
+
+<table>
+<thead>
+    <tr>
+    <th>Name</th>
+    <th>Datatype</th>
+    <th>Description</th>
+    </tr>
+</thead>
+<tbody>
+<tr>
+    <td><CopyableCode code="nextPageToken" /></td>
+    <td><code>string</code></td>
+    <td>A token identifying a page of results the server should return.</td>
+</tr>
+<tr>
+    <td><CopyableCode code="unreachable" /></td>
+    <td><code>array</code></td>
+    <td>Locations that could not be reached.</td>
+</tr>
+<tr>
+    <td><CopyableCode code="workloads" /></td>
+    <td><code>array</code></td>
+    <td>List of Workloads.</td>
+</tr>
+</tbody>
+</table>
+</TabItem>
+</Tabs>
+
+## Methods
+
+The following methods are available for this resource:
+
+<table>
+<thead>
+    <tr>
+    <th>Name</th>
+    <th>Accessible by</th>
+    <th>Required Params</th>
+    <th>Optional Params</th>
+    <th>Description</th>
+    </tr>
+</thead>
+<tbody>
+<tr>
+    <td><a href="#get"><CopyableCode code="get" /></a></td>
+    <td><CopyableCode code="select" /></td>
+    <td><a href="#parameter-projectsId"><code>projectsId</code></a>, <a href="#parameter-locationsId"><code>locationsId</code></a>, <a href="#parameter-applicationsId"><code>applicationsId</code></a>, <a href="#parameter-workloadsId"><code>workloadsId</code></a></td>
+    <td></td>
+    <td>Gets a Workload in an Application.</td>
+</tr>
+<tr>
+    <td><a href="#list"><CopyableCode code="list" /></a></td>
+    <td><CopyableCode code="select" /></td>
+    <td><a href="#parameter-projectsId"><code>projectsId</code></a>, <a href="#parameter-locationsId"><code>locationsId</code></a>, <a href="#parameter-applicationsId"><code>applicationsId</code></a></td>
+    <td><a href="#parameter-pageSize"><code>pageSize</code></a>, <a href="#parameter-pageToken"><code>pageToken</code></a>, <a href="#parameter-filter"><code>filter</code></a>, <a href="#parameter-orderBy"><code>orderBy</code></a></td>
+    <td>Lists Workloads in an Application.</td>
+</tr>
+<tr>
+    <td><a href="#create"><CopyableCode code="create" /></a></td>
+    <td><CopyableCode code="insert" /></td>
+    <td><a href="#parameter-projectsId"><code>projectsId</code></a>, <a href="#parameter-locationsId"><code>locationsId</code></a>, <a href="#parameter-applicationsId"><code>applicationsId</code></a></td>
+    <td><a href="#parameter-workloadId"><code>workloadId</code></a>, <a href="#parameter-requestId"><code>requestId</code></a></td>
+    <td>Creates a Workload in an Application.</td>
+</tr>
+<tr>
+    <td><a href="#patch"><CopyableCode code="patch" /></a></td>
+    <td><CopyableCode code="update" /></td>
+    <td><a href="#parameter-projectsId"><code>projectsId</code></a>, <a href="#parameter-locationsId"><code>locationsId</code></a>, <a href="#parameter-applicationsId"><code>applicationsId</code></a>, <a href="#parameter-workloadsId"><code>workloadsId</code></a></td>
+    <td><a href="#parameter-updateMask"><code>updateMask</code></a>, <a href="#parameter-requestId"><code>requestId</code></a></td>
+    <td>Updates a Workload in an Application.</td>
+</tr>
+<tr>
+    <td><a href="#delete"><CopyableCode code="delete" /></a></td>
+    <td><CopyableCode code="delete" /></td>
+    <td><a href="#parameter-projectsId"><code>projectsId</code></a>, <a href="#parameter-locationsId"><code>locationsId</code></a>, <a href="#parameter-applicationsId"><code>applicationsId</code></a>, <a href="#parameter-workloadsId"><code>workloadsId</code></a></td>
+    <td><a href="#parameter-requestId"><code>requestId</code></a></td>
+    <td>Deletes a Workload from an Application.</td>
+</tr>
+</tbody>
+</table>
+
+## Parameters
+
+Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#methods) section to see which parameters are required or optional for each operation.
+
+<table>
+<thead>
+    <tr>
+    <th>Name</th>
+    <th>Datatype</th>
+    <th>Description</th>
+    </tr>
+</thead>
+<tbody>
+<tr id="parameter-applicationsId">
+    <td><CopyableCode code="applicationsId" /></td>
+    <td><code>string</code></td>
+    <td></td>
+</tr>
+<tr id="parameter-locationsId">
+    <td><CopyableCode code="locationsId" /></td>
+    <td><code>string</code></td>
+    <td></td>
+</tr>
+<tr id="parameter-projectsId">
+    <td><CopyableCode code="projectsId" /></td>
+    <td><code>string</code></td>
+    <td></td>
+</tr>
+<tr id="parameter-workloadsId">
+    <td><CopyableCode code="workloadsId" /></td>
+    <td><code>string</code></td>
+    <td></td>
+</tr>
+<tr id="parameter-filter">
+    <td><CopyableCode code="filter" /></td>
+    <td><code>string</code></td>
+    <td></td>
+</tr>
+<tr id="parameter-orderBy">
+    <td><CopyableCode code="orderBy" /></td>
+    <td><code>string</code></td>
+    <td></td>
+</tr>
+<tr id="parameter-pageSize">
+    <td><CopyableCode code="pageSize" /></td>
+    <td><code>integer (int32)</code></td>
+    <td></td>
+</tr>
+<tr id="parameter-pageToken">
+    <td><CopyableCode code="pageToken" /></td>
+    <td><code>string</code></td>
+    <td></td>
+</tr>
+<tr id="parameter-requestId">
+    <td><CopyableCode code="requestId" /></td>
+    <td><code>string</code></td>
+    <td></td>
+</tr>
+<tr id="parameter-updateMask">
+    <td><CopyableCode code="updateMask" /></td>
+    <td><code>string (google-fieldmask)</code></td>
+    <td></td>
+</tr>
+<tr id="parameter-workloadId">
+    <td><CopyableCode code="workloadId" /></td>
+    <td><code>string</code></td>
+    <td></td>
+</tr>
+</tbody>
+</table>
+
+## `SELECT` examples
+
+<Tabs
+    defaultValue="get"
+    values={[
+        { label: 'get', value: 'get' },
+        { label: 'list', value: 'list' }
+    ]}
+>
+<TabItem value="get">
+
+Gets a Workload in an Application.
+
+```sql
+SELECT
+name,
+attributes,
+createTime,
+description,
+discoveredWorkload,
+displayName,
+state,
+uid,
+updateTime,
+workloadProperties,
+workloadReference
+FROM google.apphub.workloads
+WHERE projectsId = '{{ projectsId }}' -- required
+AND locationsId = '{{ locationsId }}' -- required
+AND applicationsId = '{{ applicationsId }}' -- required
+AND workloadsId = '{{ workloadsId }}' -- required;
+```
+</TabItem>
+<TabItem value="list">
+
+Lists Workloads in an Application.
+
+```sql
+SELECT
+nextPageToken,
+unreachable,
+workloads
+FROM google.apphub.workloads
+WHERE projectsId = '{{ projectsId }}' -- required
+AND locationsId = '{{ locationsId }}' -- required
+AND applicationsId = '{{ applicationsId }}' -- required
+AND pageSize = '{{ pageSize }}'
+AND pageToken = '{{ pageToken }}'
+AND filter = '{{ filter }}'
+AND orderBy = '{{ orderBy }}';
+```
+</TabItem>
+</Tabs>
+
+
+## `INSERT` examples
+
+<Tabs
+    defaultValue="create"
+    values={[
+        { label: 'create', value: 'create' },
+        { label: 'Manifest', value: 'manifest' }
+    ]}
+>
+<TabItem value="create">
+
+Creates a Workload in an Application.
+
+```sql
+INSERT INTO google.apphub.workloads (
+data__name,
+data__displayName,
+data__description,
+data__discoveredWorkload,
+data__attributes,
+projectsId,
+locationsId,
+applicationsId,
+workloadId,
+requestId
+)
+SELECT 
+'{{ name }}',
+'{{ displayName }}',
+'{{ description }}',
+'{{ discoveredWorkload }}',
+'{{ attributes }}',
+'{{ projectsId }}',
+'{{ locationsId }}',
+'{{ applicationsId }}',
+'{{ workloadId }}',
+'{{ requestId }}'
+RETURNING
+name,
+done,
+error,
+metadata,
+response
+;
+```
+</TabItem>
+<TabItem value="manifest">
+
+```yaml
+# Description fields are for documentation purposes
+- name: workloads
+  props:
+    - name: projectsId
+      value: string
+      description: Required parameter for the workloads resource.
+    - name: locationsId
+      value: string
+      description: Required parameter for the workloads resource.
+    - name: applicationsId
+      value: string
+      description: Required parameter for the workloads resource.
+    - name: name
+      value: string
+      description: >
+        Identifier. The resource name of the Workload. Format: `"projects/{host-project-id}/locations/{location}/applications/{application-id}/workloads/{workload-id}"`
+        
+    - name: displayName
+      value: string
+      description: >
+        Optional. User-defined name for the Workload. Can have a maximum length of 63 characters.
+        
+    - name: description
+      value: string
+      description: >
+        Optional. User-defined description of a Workload. Can have a maximum length of 2048 characters.
+        
+    - name: discoveredWorkload
+      value: string
+      description: >
+        Required. Immutable. The resource name of the original discovered workload.
+        
+    - name: attributes
+      value: object
+      description: >
+        Optional. Consumer provided attributes.
+        
+    - name: workloadId
+      value: string
+    - name: requestId
+      value: string
+```
+</TabItem>
+</Tabs>
+
+
+## `UPDATE` examples
+
+<Tabs
+    defaultValue="patch"
+    values={[
+        { label: 'patch', value: 'patch' }
+    ]}
+>
+<TabItem value="patch">
+
+Updates a Workload in an Application.
+
+```sql
+UPDATE google.apphub.workloads
+SET 
+data__name = '{{ name }}',
+data__displayName = '{{ displayName }}',
+data__description = '{{ description }}',
+data__discoveredWorkload = '{{ discoveredWorkload }}',
+data__attributes = '{{ attributes }}'
+WHERE 
+projectsId = '{{ projectsId }}' --required
+AND locationsId = '{{ locationsId }}' --required
+AND applicationsId = '{{ applicationsId }}' --required
+AND workloadsId = '{{ workloadsId }}' --required
+AND updateMask = '{{ updateMask}}'
+AND requestId = '{{ requestId}}'
+RETURNING
+name,
+done,
+error,
+metadata,
+response;
+```
+</TabItem>
+</Tabs>
+
+
+## `DELETE` examples
+
+<Tabs
+    defaultValue="delete"
+    values={[
+        { label: 'delete', value: 'delete' }
+    ]}
+>
+<TabItem value="delete">
+
+Deletes a Workload from an Application.
+
+```sql
+DELETE FROM google.apphub.workloads
+WHERE projectsId = '{{ projectsId }}' --required
+AND locationsId = '{{ locationsId }}' --required
+AND applicationsId = '{{ applicationsId }}' --required
+AND workloadsId = '{{ workloadsId }}' --required
+AND requestId = '{{ requestId }}';
+```
+</TabItem>
+</Tabs>

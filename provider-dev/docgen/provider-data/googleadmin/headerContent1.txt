@@ -1,0 +1,19 @@
+---
+title: googleadmin
+hide_title: false
+hide_table_of_contents: false
+keywords:
+  - googleadmin
+  - stackql
+  - infrastructure-as-code
+  - configuration-as-data
+  - cloud inventory
+description: Query and manage Google Workspace users and groups using SQL.
+custom_edit_url: null
+image: /img/stackql-google-provider-featured-image.png
+id: 'provider-intro'
+---
+
+import CopyableCode from '@site/src/components/CopyableCode/CopyableCode';
+
+Google Workspace identity services.  

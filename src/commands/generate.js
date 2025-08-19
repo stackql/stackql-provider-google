@@ -16,14 +16,13 @@ import {
 import * as path from 'path';
 import fetch from 'node-fetch';
 import * as yaml from 'js-yaml';
-
 import fs from 'fs';
-
 
 const rootDiscoveryUrl = {
     'googleapis.com': 'https://discovery.googleapis.com/discovery/v1/apis',
     firebase: 'https://discovery.googleapis.com/discovery/v1/apis',
-    googleadmin: 'https://admin.googleapis.com/$discovery/rest?version=directory_v1'
+    googleworkspace: 'https://discovery.googleapis.com/discovery/v1/apis',
+    googleadmin: 'https://admin.googleapis.com/$discovery/rest?version=directory_v1',
 };
 
 const baseOpenApiDoc = {
@@ -206,8 +205,13 @@ export async function generateSpecs(options, rootDir) {
     
     const requiredGCPScope = 'https://www.googleapis.com/auth/cloud-platform';
 
-    // make sure provider is one of 'googleapis.com', 'firebase', or 'googleadmin'
-    if(provider !== 'googleapis.com' && provider !== 'firebase' && provider !== 'googleadmin'){
+    // make sure provider is supported
+    if(![
+        'googleapis.com',
+        'firebase',
+        'googleworkspace',
+        'googleadmin'
+    ].includes(provider)){
         logger.error('invalid service specified, exiting...');
         return;
     }
@@ -237,12 +241,37 @@ export async function generateSpecs(options, rootDir) {
     const rootResp = await fetch(rootDiscoveryUrl[provider]);
     const rootData = await rootResp.json();
 
-    if(provider != 'googleadmin'){
-        //
-        // only for googleapis.com and firebase
-        //
+    if(provider == 'googleapis.com'){
 
         const additionalServiceData = [
+            {
+                name: "geminicloudassist",
+                id: "geminicloudassist:v1alpha",
+                version: "v1alpha",
+                title: "Gemini Cloud Assist API",
+                description: "The AI-powered assistant for Google Cloud.",
+                discoveryRestUrl: "https://geminicloudassist.googleapis.com/$discovery/rest?version=v1alpha",
+                icons: {
+                    x16: "http://www.google.com/images/icons/product/search-32.gif",
+                    x32: "http://www.google.com/images/icons/product/search-16.gif"
+                  },
+                documentationLink: "https://cloud.google.com/marketplace/docs/partners/",
+                preferred: true
+            },
+            {
+                name: "cloudaicompanion",
+                id: "cloudaicompanion:v1",
+                version: "v1",
+                title: "Gemini for Google Cloud API",
+                description: "The AI-powered assistant for Google Cloud.",
+                discoveryRestUrl: "https://cloudaicompanion.googleapis.com/$discovery/rest?version=v1",
+                icons: {
+                    x16: "http://www.google.com/images/icons/product/search-32.gif",
+                    x32: "http://www.google.com/images/icons/product/search-16.gif"
+                  },
+                documentationLink: "https://cloud.google.com/marketplace/docs/partners/",
+                preferred: true
+            },
             {
                 name: "cloudcommerceprocurement",
                 id: "cloudcommerceprocurement:v1",
@@ -381,12 +410,113 @@ export async function generateSpecs(options, rootDir) {
            }
         }
 
-    } else {
-        //
-        // googleadmin
-        //
+    } else if (provider == 'googleadmin'){
         logger.info(`processing googleadmin.directory...`);
         await processService('googleadmin', 'directory', rootData, servicesDir, debug);
+    } else if (provider == 'firebase'){
+        logger.info(`processing firebase...`);
+        await processService('firebase', 'firebase', rootData, servicesDir, debug);
+    } else if (provider == 'googleworkspace'){
+        logger.info(`processing googleworkspace...`);
+
+        const includedServices = [
+            {
+                "kind": "discovery#directoryItem",
+                "id": "drive:v2",
+                "name": "drivev2",
+                "version": "v2",
+                "title": "Drive API",
+                "description": "Manages files in Drive including uploading, downloading, searching, detecting changes, and updating sharing permissions.",
+                "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/drive/v2/rest",
+                "discoveryLink": "./apis/drive/v2/rest",
+                "icons": {
+                  "x16": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_16.png",
+                  "x32": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_32.png"
+                },
+                "documentationLink": "https://developers.google.com/drive/",
+                "preferred": false
+              },
+              {
+                "kind": "discovery#directoryItem",
+                "id": "drive:v3",
+                "name": "drivev3",
+                "version": "v3",
+                "title": "Drive API",
+                "description": "Manages files in Drive including uploading, downloading, searching, detecting changes, and updating sharing permissions.",
+                "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/drive/v3/rest",
+                "discoveryLink": "./apis/drive/v3/rest",
+                "icons": {
+                  "x16": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_16.png",
+                  "x32": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_32.png"
+                },
+                "documentationLink": "https://developers.google.com/drive/",
+                "preferred": true
+              },
+              {
+                "kind": "discovery#directoryItem",
+                "id": "driveactivity:v2",
+                "name": "driveactivityv2",
+                "version": "v2",
+                "title": "Drive Activity API",
+                "description": "Provides a historical view of activity in Google Drive.",
+                "discoveryRestUrl": "https://driveactivity.googleapis.com/$discovery/rest?version=v2",
+                "icons": {
+                  "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+                  "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+                },
+                "documentationLink": "https://developers.google.com/drive/activity/",
+                "preferred": true
+              },
+              {
+                "kind": "discovery#directoryItem",
+                "id": "drivelabels:v2beta",
+                "name": "drivelabelsv2beta",
+                "version": "v2beta",
+                "title": "Drive Labels API",
+                "description": "An API for managing Drive Labels",
+                "discoveryRestUrl": "https://drivelabels.googleapis.com/$discovery/rest?version=v2beta",
+                "icons": {
+                  "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+                  "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+                },
+                "documentationLink": "https://developers.google.com/drive/labels",
+                "preferred": false
+              },
+              {
+                "kind": "discovery#directoryItem",
+                "id": "drivelabels:v2",
+                "name": "drivelabelsv2",
+                "version": "v2",
+                "title": "Drive Labels API",
+                "description": "An API for managing Drive Labels",
+                "discoveryRestUrl": "https://drivelabels.googleapis.com/$discovery/rest?version=v2",
+                "icons": {
+                  "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+                  "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+                },
+                "documentationLink": "https://developers.google.com/drive/labels",
+                "preferred": true
+              },
+        ];
+
+        for(let service of includedServices){
+            try {       
+                logger.info(`checking ${service.name}...`);
+
+                const svcResp = await fetch(service.discoveryRestUrl);
+                const svcData = await svcResp.json();        
+
+                logger.info(`--------------------------------------`);
+                logger.info(`processing service ${service.name} ...`);
+                logger.info(`--------------------------------------`);
+                await processService('googleworkspace', service.name, svcData, servicesDir, debug);
+
+            } catch (err) {
+                // crash program if error
+                logger.error(err);
+                process.exit(1);
+            }
+        }
     }
 
     // add provider.yaml file
