@@ -20,8 +20,11 @@ import { useColorMode } from '@docusaurus/theme-common';
 
 import { Icon } from '@iconify/react';
 
+// add for responsive logo image
+import { useWindowSize } from '@docusaurus/theme-common';
+
 // Custom styles to fix the spacing issue
-const socialIconsContainerStyle = {
+const socialIconsContainerStyle: React.CSSProperties = {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
@@ -71,15 +74,36 @@ const FooterLogo = ({
   alt,
   width,
   height,
-}: Pick<ThemedImageProps, 'sources' | 'alt' | 'width' | 'height'>) => (
-  <ThemedImage
-    className="footer__logo"
-    alt={alt}
-    sources={sources}
-    width={width}
-    height={height}
-  />
-);
+  logo,
+}: Pick<ThemedImageProps, 'sources' | 'alt' | 'width' | 'height'> & { logo: any }) => {
+  // Get window width for responsiveness
+  const windowSize = useWindowSize();
+  
+  // Set threshold for mobile view (e.g., 768px)
+  const isMobile = windowSize === 'mobile' ? true : false;
+
+  const getMobileLogoPath = (path: string) => path?.replace('.svg', '-mobile.svg');
+
+  // Choose appropriate image sources based on screen size
+  // const responsiveSources = {
+  //   light: useBaseUrl(isMobile ? getMobileLogoPath(logo.src) : logo.src),
+  //   dark: useBaseUrl(isMobile ? getMobileLogoPath(logo.srcDark || logo.src) : (logo.srcDark || logo.src)),
+  // };
+  const responsiveSources = {
+    light: useBaseUrl(isMobile ? getMobileLogoPath(logo?.src) : logo?.src),
+    dark: useBaseUrl(isMobile ? getMobileLogoPath(logo?.srcDark || logo?.src) : (logo?.srcDark || logo?.src)),
+  };
+
+  return (
+    <ThemedImage
+      className="footer__logo"
+      alt={alt}
+      sources={responsiveSources}
+      width={width}
+      height={height}
+    />
+  );
+}
 
 function Footer(): JSX.Element | null {
   const socialLinks = {
@@ -94,7 +118,7 @@ function Footer(): JSX.Element | null {
 
   const {footer} = useThemeConfig();
 
-  const {copyright, links = [], logo = {}} = footer || {};
+  const {copyright, links = [], logo = { src: '' }} = footer || {};
   const sources = {
     light: useBaseUrl(logo.src),
     dark: useBaseUrl(logo.srcDark || logo.src),
@@ -115,15 +139,15 @@ function Footer(): JSX.Element | null {
           <div className="row footer__links">
             <div className="col col--6 footer__col">
               {logo && (logo.src || logo.srcDark) && (
-                <div className="margin-bottom--sm">
-                  {logo.href ? (
-                    <Link href={logo.href} className={styles.footerLogoLink}>
-                      <FooterLogo alt={logo.alt} sources={sources} />
-                    </Link>
-                  ) : (
-                    <FooterLogo alt={logo.alt} sources={sources} />
-                  )}
-                </div>
+                  <div className="margin-bottom--sm">
+                    {logo.href ? (
+                      <Link href={logo.href} className={styles.footerLogoLink}>
+                        <FooterLogo alt={logo.alt} sources={sources} logo={logo} />
+                      </Link>
+                    ) : (
+                      <FooterLogo alt={logo.alt} sources={sources} logo={logo} />
+                    )}
+                  </div>                
               )}
               <p className="footer__subtitle">
                 A new approach to querying and <br />
