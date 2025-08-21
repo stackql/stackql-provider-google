@@ -1,6 +1,6 @@
-# Google Discovery to OpenAPI 3.x Converter
+# StackQL Provider Google
 
-Generates OpenAPI 3.x specification from Google Discovery documents.
+Generates OpenAPI 3.x specification from Google Discovery documents and creates [StackQL](https://github.com/stackql/stackql) provider specifications.
 
 > OpenAPI 3 Specifications for Google Cloud APIs can be found at [__stackql/stackql-provider-registry__](https://github.com/stackql/stackql-provider-registry/tree/dev/providers/src/googleapis.com/v00.00.00000/services)
 
@@ -15,13 +15,14 @@ The resultant OpenAPI service specifications can the be used with [`stackql/open
 
 ## Usage
 
-> __NOTE:__ Requires Node.js 14.x or higher
-
 Mac/Linux:
 
 ```bash
 npm install
 bin/google-discovery-to-openapi.mjs generate googleapis.com --debug
+bin/google-discovery-to-openapi.mjs generate googleworkspace --debug
+bin/google-discovery-to-openapi.mjs generate googleadmin --debug
+bin/google-discovery-to-openapi.mjs generate firebase --debug
 ```
 
 Windows/PowerShell:
@@ -64,4 +65,63 @@ curl -L https://bit.ly/stackql-zip -O && unzip stackql-zip
 DEV_REG="{ \"url\": \"https://registry-dev.stackql.app/providers\" }"
 AUTH='{ "google": { "type": "interactive" }}'
 ./stackql --auth="${AUTH}" --registry="${DEV_REG}" shell
+```
+
+## Generate web docs
+
+```bash
+npm i
+
+# google
+rm -rf ./website/google/docs/*
+npm run generate-docs -- \
+  --provider-name google \
+  --provider-dir ./openapi/src/googleapis.com/v00.00.00000 \
+  --output-dir ./website/google \
+  --provider-data-dir ./provider-dev/docgen/provider-data/google
+sh bin/fix-broken-links-google.sh   
+
+# googleadmin
+rm -rf ./website/googleadmin/docs/*
+npm run generate-docs -- \
+  --provider-name googleadmin \
+  --provider-dir ./openapi/src/googleadmin/v00.00.00000 \
+  --output-dir ./website/googleadmin \
+  --provider-data-dir ./provider-dev/docgen/provider-data/googleadmin
+
+# googleworkspace
+rm -rf ./website/googleworkspace/docs/*
+npm run generate-docs -- \
+  --provider-name googleworkspace \
+  --provider-dir ./openapi/src/googleworkspace/v00.00.00000 \
+  --output-dir ./website/googleworkspace \
+  --provider-data-dir ./provider-dev/docgen/provider-data/googleworkspace
+
+# firebase
+rm -rf ./website/firebase/docs/*
+npm run generate-docs -- \
+  --provider-name firebase \
+  --provider-dir ./openapi/src/firebase/v00.00.00000 \
+  --output-dir ./website/firebase \
+  --provider-data-dir ./provider-dev/docgen/provider-data/firebase
+```  
+
+### 8. Test web docs locally
+
+```bash
+# google
+cd website/google
+yarn start
+
+# googleadmin
+cd website/googleadmin
+yarn start
+
+# googleworkspace
+cd website/googleworkspace
+yarn start
+
+# firebase
+cd website/firebase
+yarn start
 ```
