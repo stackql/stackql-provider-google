@@ -40,10 +40,6 @@ const baseOpenApiDoc = {
     paths: {}
 };
 
-/*
-*  provider index creation function
-*/
-
 const configObj = {
     auth: {
         credentialsenvvar: 'GOOGLE_CREDENTIALS',
@@ -51,6 +47,9 @@ const configObj = {
     }
 };
 
+/*
+*  provider index creation function
+*/
 async function generateProviderIndex(provider, servicesDir, providerDir, configObj, debug) {
 
     logger.info(`generating provider index for ${provider}...`);
@@ -115,7 +114,6 @@ async function generateProviderIndex(provider, servicesDir, providerDir, configO
 /*
 *  service processing function
 */
-
 async function processService(provider, serviceName, serviceData, serviceDir, debug){
     try {
 
@@ -196,7 +194,6 @@ async function processService(provider, serviceName, serviceData, serviceDir, de
 /*
 *  main routine
 */
-
 export async function generateSpecs(options, rootDir) {
     const debug = options.debug;
     const preferred = options.preferred;
@@ -299,37 +296,37 @@ export async function generateSpecs(options, rootDir) {
                 },
                 documentationLink: "https://cloud.google.com/iam/",
                 preferred: false
-              },
-              {
-                id: "iam:v1",
-                name: "iam",
-                version: "v1",
-                title: "Identity and Access Management (IAM) API",
-                description: "Manages identity and access control for Google Cloud resources, including the creation of service accounts, which you can use to authenticate to Google and make API calls. Enabling this API also enables the IAM Service Account Credentials API (iamcredentials.googleapis.com). However, disabling this API doesn't disable the IAM Service Account Credentials API.",
-                discoveryRestUrl: "https://iam.googleapis.com/$discovery/rest?version=v1",
-                icons: {
-                  x16: "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-                  x32: "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-                },
-                documentationLink: "https://cloud.google.com/iam/",
-                preferred: false
-              },
-              {
-                id: "iam:v2",
-                name: "iamv2",
-                version: "v2",
-                title: "Identity and Access Management (IAM) API",
-                description: "Manages identity and access control for Google Cloud resources, including the creation of service accounts, which you can use to authenticate to Google and make API calls. Enabling this API also enables the IAM Service Account Credentials API (iamcredentials.googleapis.com). However, disabling this API doesn't disable the IAM Service Account Credentials API.",
-                discoveryRestUrl: "https://iam.googleapis.com/$discovery/rest?version=v2",
-                icons: {
-                  x16: "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-                  x32: "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-                },
-                documentationLink: "https://cloud.google.com/iam/",
-                preferred: true
-              },            
+            },
+            {
+            id: "iam:v1",
+            name: "iam",
+            version: "v1",
+            title: "Identity and Access Management (IAM) API",
+            description: "Manages identity and access control for Google Cloud resources, including the creation of service accounts, which you can use to authenticate to Google and make API calls. Enabling this API also enables the IAM Service Account Credentials API (iamcredentials.googleapis.com). However, disabling this API doesn't disable the IAM Service Account Credentials API.",
+            discoveryRestUrl: "https://iam.googleapis.com/$discovery/rest?version=v1",
+            icons: {
+                x16: "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+                x32: "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+            },
+            documentationLink: "https://cloud.google.com/iam/",
+            preferred: false
+            },
+            {
+            id: "iam:v2",
+            name: "iamv2",
+            version: "v2",
+            title: "Identity and Access Management (IAM) API",
+            description: "Manages identity and access control for Google Cloud resources, including the creation of service accounts, which you can use to authenticate to Google and make API calls. Enabling this API also enables the IAM Service Account Credentials API (iamcredentials.googleapis.com). However, disabling this API doesn't disable the IAM Service Account Credentials API.",
+            discoveryRestUrl: "https://iam.googleapis.com/$discovery/rest?version=v2",
+            icons: {
+                x16: "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+                x32: "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+            },
+            documentationLink: "https://cloud.google.com/iam/",
+            preferred: true
+            },            
         ];
-        
+
         const excludedServices = ["iam"];
 
         // filter services by preferred
