@@ -13,17 +13,13 @@ import {
     populatePaths,
     generateStackQLResources,
 } from '../helper/functions.js';
+import {
+    providerConfig
+} from '../config/providers.js';
 import * as path from 'path';
 import fetch from 'node-fetch';
 import * as yaml from 'js-yaml';
 import fs from 'fs';
-
-const rootDiscoveryUrl = {
-    'googleapis.com': 'https://discovery.googleapis.com/discovery/v1/apis',
-    firebase: 'https://discovery.googleapis.com/discovery/v1/apis',
-    googleworkspace: 'https://discovery.googleapis.com/discovery/v1/apis',
-    googleadmin: 'https://admin.googleapis.com/$discovery/rest?version=directory_v1',
-};
 
 const baseOpenApiDoc = {
     openapi: '3.1.0', 
@@ -43,14 +39,6 @@ const baseOpenApiDoc = {
 /*
 *  provider index creation function
 */
-
-const configObj = {
-    auth: {
-        credentialsenvvar: 'GOOGLE_CREDENTIALS',
-        type: 'service_account'
-    }
-};
-
 async function generateProviderIndex(provider, servicesDir, providerDir, configObj, debug) {
 
     logger.info(`generating provider index for ${provider}...`);
@@ -115,7 +103,6 @@ async function generateProviderIndex(provider, servicesDir, providerDir, configO
 /*
 *  service processing function
 */
-
 async function processService(provider, serviceName, serviceData, serviceDir, debug){
     try {
 
@@ -196,14 +183,14 @@ async function processService(provider, serviceName, serviceData, serviceDir, de
 /*
 *  main routine
 */
-
 export async function generateSpecs(options, rootDir) {
     const debug = options.debug;
     const preferred = options.preferred;
     let outputDir = options.output;
     const provider = options.provider;
-    
-    const requiredGCPScope = 'https://www.googleapis.com/auth/cloud-platform';
+
+    logger.info(`generate called for ${provider}...`);
+    debug ? logger.debug({rootDir: rootDir, ...options}) : null;
 
     // make sure provider is supported
     if(![
@@ -216,9 +203,6 @@ export async function generateSpecs(options, rootDir) {
         return;
     }
 
-    logger.info(`generate called for ${provider}...`);
-    debug ? logger.debug({rootDir: rootDir, ...options}) : null;
-
     // get output directory
     if(outputDir.startsWith('/') || outputDir.startsWith('C:\\')){
         debug ? logger.debug('absolute path supplied for output directory') : null;
@@ -226,301 +210,115 @@ export async function generateSpecs(options, rootDir) {
         outputDir = path.join(rootDir, outputDir, 'src');
     }
     logger.info(`output directory: ${outputDir}`);
-
+    
     // create spec directory
     const providerDir = path.join(outputDir, provider, 'v00.00.00000'); 
     let servicesDir = path.join(providerDir, 'services');
-    if(!preferred && provider != 'googleadmin'){
-        servicesDir = path.join(outputDir, provider == 'googleapis.com' ? 'google_beta' : `${provider}_beta`, 'v00.00.00000', 'services');
-    }
     createOrCleanDir(servicesDir, debug);
     removeProviderIndexFile(providerDir, debug);
-    
-    // get root discovery document
-    logger.info('Getting root discovery document...');
-    const rootResp = await fetch(rootDiscoveryUrl[provider]);
-    const rootData = await rootResp.json();
 
-    if(provider == 'googleapis.com'){
+    // 
+    // get service list
+    //
+    let services = [];
 
-        const additionalServiceData = [
-            {
-                name: "geminicloudassist",
-                id: "geminicloudassist:v1alpha",
-                version: "v1alpha",
-                title: "Gemini Cloud Assist API",
-                description: "The AI-powered assistant for Google Cloud.",
-                discoveryRestUrl: "https://geminicloudassist.googleapis.com/$discovery/rest?version=v1alpha",
-                icons: {
-                    x16: "http://www.google.com/images/icons/product/search-32.gif",
-                    x32: "http://www.google.com/images/icons/product/search-16.gif"
-                  },
-                documentationLink: "https://cloud.google.com/marketplace/docs/partners/",
-                preferred: true
-            },
-            {
-                name: "cloudaicompanion",
-                id: "cloudaicompanion:v1",
-                version: "v1",
-                title: "Gemini for Google Cloud API",
-                description: "The AI-powered assistant for Google Cloud.",
-                discoveryRestUrl: "https://cloudaicompanion.googleapis.com/$discovery/rest?version=v1",
-                icons: {
-                    x16: "http://www.google.com/images/icons/product/search-32.gif",
-                    x32: "http://www.google.com/images/icons/product/search-16.gif"
-                  },
-                documentationLink: "https://cloud.google.com/marketplace/docs/partners/",
-                preferred: true
-            },
-            {
-                name: "cloudcommerceprocurement",
-                id: "cloudcommerceprocurement:v1",
-                version: "v1",
-                title: "Cloud Commerce Partner Procurement API",
-                description: "Partner API for the Cloud Commerce Procurement Service.",
-                discoveryRestUrl: "https://cloudcommerceprocurement.googleapis.com/$discovery/rest?version=v1",
-                icons: {
-                    x16: "http://www.google.com/images/icons/product/search-32.gif",
-                    x32: "http://www.google.com/images/icons/product/search-16.gif"
-                  },
-                documentationLink: "https://cloud.google.com/marketplace/docs/partners/",
-                preferred: true
-            },
-            {
-                id: "iam:v2beta",
-                name: "iamv2beta",
-                version: "v2beta",
-                title: "Identity and Access Management (IAM) API",
-                description: "Manages identity and access control for Google Cloud resources, including the creation of service accounts, which you can use to authenticate to Google and make API calls. Enabling this API also enables the IAM Service Account Credentials API (iamcredentials.googleapis.com). However, disabling this API doesn't disable the IAM Service Account Credentials API.",
-                discoveryRestUrl: "https://iam.googleapis.com/$discovery/rest?version=v2beta",
-                icons: {
-                  x16: "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-                  x32: "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-                },
-                documentationLink: "https://cloud.google.com/iam/",
-                preferred: false
-              },
-              {
-                id: "iam:v1",
-                name: "iam",
-                version: "v1",
-                title: "Identity and Access Management (IAM) API",
-                description: "Manages identity and access control for Google Cloud resources, including the creation of service accounts, which you can use to authenticate to Google and make API calls. Enabling this API also enables the IAM Service Account Credentials API (iamcredentials.googleapis.com). However, disabling this API doesn't disable the IAM Service Account Credentials API.",
-                discoveryRestUrl: "https://iam.googleapis.com/$discovery/rest?version=v1",
-                icons: {
-                  x16: "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-                  x32: "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-                },
-                documentationLink: "https://cloud.google.com/iam/",
-                preferred: false
-              },
-              {
-                id: "iam:v2",
-                name: "iamv2",
-                version: "v2",
-                title: "Identity and Access Management (IAM) API",
-                description: "Manages identity and access control for Google Cloud resources, including the creation of service accounts, which you can use to authenticate to Google and make API calls. Enabling this API also enables the IAM Service Account Credentials API (iamcredentials.googleapis.com). However, disabling this API doesn't disable the IAM Service Account Credentials API.",
-                discoveryRestUrl: "https://iam.googleapis.com/$discovery/rest?version=v2",
-                icons: {
-                  x16: "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-                  x32: "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-                },
-                documentationLink: "https://cloud.google.com/iam/",
-                preferred: true
-              },            
-        ];
+    if('includedServiceData' in providerConfig[provider]){
+        // explict service list
+        services = providerConfig[provider]['includedServiceData'];
+    } else {
+        // get all services from `rootDiscoveryUrl`
+        logger.info(`Getting data from ${providerConfig[provider]['rootDiscoveryUrl']}...`);
+        const rootResp = await fetch(providerConfig[provider]['rootDiscoveryUrl']);
+        const rootData = await rootResp.json();
         
-        const excludedServices = ["iam"];
+        // filter out `excludedServices` if any
+        services = rootData.items.filter(item => 
+            !providerConfig[provider]['excludedServices'].includes(item.name)
+        );
 
-        // filter services by preferred
-        let services = [];
-        if(preferred){
-            services = rootData.items.filter(item => 
-                item.preferred === true && !excludedServices.includes(item.name)
-            );
-            services = services.concat(additionalServiceData);
-        } else {
-            // TODO implement support for nonpreferred APIs
-            let betaServices = [];
-            betaServices = rootData.items;
-            betaServices.forEach(service => {
-                // if service.id does not contain the words beta or alpha, delete the service
-                if(service.id.includes('beta') || service.id.includes('alpha')){
-                    service.name = service.id.replace(':', '_');
-                    services.push(service);
+        // Filter out services matching excludedServiceNamePattern if it exists
+        if ('excludedServiceNamePattern' in providerConfig[provider]) {
+        const regex = new RegExp(providerConfig[provider]['excludedServiceNamePattern']);
+        services = services.filter(service => !regex.test(service.name));
+        }
+
+        // add `additionalServiceData` if any
+        services = services.concat(providerConfig[provider]['additionalServiceData']);
+
+        // if `includedServiceNames` or `includedServiceNamePattern` filter out all except these
+        if('includedServiceNames' in providerConfig[provider] 
+            || 'includedServiceNamePattern' in providerConfig[provider]
+        ){
+            services = services.filter(service => {
+                let byName = false;
+                let byPattern = false;
+
+                if (providerConfig[provider]['includedServiceNames']) {
+                    byName = providerConfig[provider]['includedServiceNames'].includes(service.name);
                 }
+
+                if (providerConfig[provider]['includedServiceNamePattern']) {
+                    const regex = new RegExp(providerConfig[provider]['includedServiceNamePattern']);
+                    byPattern = regex.test(service.name);
+                }
+
+                return byName || byPattern;
             });
         }
+    }
+    
+    logger.info(`processing: ${services.length} services...`);
+    debug ? logger.debug(`services to be processed:`) : null;
+    if(debug){
+        services.forEach(service => {
+            logger.debug(service.name);
+        });
+    }
 
-        logger.info(`processing: ${services.length} services...`);
-        debug ? logger.debug(`services to be processed:`) : null;
-        if(debug){
-            services.forEach(service => {
-                logger.debug(service.name);
-            });
-        }
+    for(let service of services){
+        try {
+            logger.info(`checking ${service.name}...`);
 
+            // get service data
+            const svcResp = await fetch(service.discoveryRestUrl);
+            const svcData = await svcResp.json();
 
-        // get document for each service, check if oauth2.scopes includes a key named "https://www.googleapis.com/auth/cloud-platform"
-        logger.info('Checking OAuth scopes...');
-        for(let service of services){
-            try {       
-                logger.info(`checking ${service.name}...`);
-
-                // if(service.name != 'serviceusage' && service.name != 'iam' && service.name != 'iamv2' && service.name != 'iamv2beta'){
-                //     continue;
-                // }
-
-                const svcResp = await fetch(service.discoveryRestUrl);
-                const svcData = await svcResp.json();
-
-                // check if svcData.auth.oauth2.scopes includes any key
-                if(svcData['auth'] && svcData['auth']['oauth2'] && svcData['auth']['oauth2']['scopes']){
-                    if(Object.keys(svcData['auth']['oauth2']['scopes']).length > 0){
-                        if(service.name.includes('firebase') || service.name.includes('toolresults') || service.name.includes('fcm')){
-                            // its a firebase service
-                            if(provider === 'firebase'){
-                                logger.info(`--------------------------------------`);
-                                logger.info(`processing service ${service.name} ...`);
-                                logger.info(`--------------------------------------`);
-                                await processService(provider, service.name, svcData, servicesDir, debug);                                        
-                            }
-                        } else {
-                            if(provider === 'googleapis.com'){
-                                if (Object.keys(svcData.auth.oauth2.scopes).includes(requiredGCPScope)) {
-                                    logger.info(`--------------------------------------`);
-                                    logger.info(`processing service ${service.name} ...`);
-                                    logger.info(`--------------------------------------`);
-                                    await processService('google', service.name, svcData, servicesDir, debug);                                   
-                                } else {
-                                    logger.info(`service ${service.name} does not have required GCP scope, skipping...`);
-                                }
-                            }
+            // check if svcData.auth.oauth2.scopes includes any key
+            if(svcData['auth'] && svcData['auth']['oauth2'] && svcData['auth']['oauth2']['scopes']
+                && Object.keys(svcData['auth']['oauth2']['scopes']).length > 0
+            ){
+                logger.info('Checking OAuth scopes...');
+                if (providerConfig[provider]['requiredScopes'].some(requiredScope => 
+                    Object.keys(svcData.auth.oauth2.scopes).includes(requiredScope))) {
+                    const serviceName = (() => {
+                        if (providerConfig[provider]['serviceNameMap'] && 
+                            providerConfig[provider]['serviceNameMap'][service.name]) {
+                            return providerConfig[provider]['serviceNameMap'][service.name];
                         }
-                    }
+                        return service.name;
+                    })();
+                    logger.info(`-------------------------------------------------------`);
+                    logger.info(`processing service ${service.name} as ${serviceName}...`);
+                    logger.info(`-------------------------------------------------------`);
+                    await processService(provider, serviceName, svcData, servicesDir, debug);
                 } else {
-                    logger.info(`service ${service.name} has no auth, skipping...`);
+                    logger.info(`service ${service.name} does not have required scope, skipping...`);
                 }
-            } catch (err) {
-                // crash program if error
-                logger.error(err);
-                if(service.name != 'poly'){
-                    process.exit(1);
-                }
-           }
-        }
+            } else {
+                logger.info(`service ${service.name} has no auth, skipping...`);
+            }
 
-    } else if (provider == 'googleadmin'){
-        logger.info(`processing googleadmin.directory...`);
-        await processService('googleadmin', 'directory', rootData, servicesDir, debug);
-    } else if (provider == 'firebase'){
-        logger.info(`processing firebase...`);
-        await processService('firebase', 'firebase', rootData, servicesDir, debug);
-    } else if (provider == 'googleworkspace'){
-        logger.info(`processing googleworkspace...`);
-
-        const includedServices = [
-            {
-                "kind": "discovery#directoryItem",
-                "id": "drive:v2",
-                "name": "drivev2",
-                "version": "v2",
-                "title": "Drive API",
-                "description": "Manages files in Drive including uploading, downloading, searching, detecting changes, and updating sharing permissions.",
-                "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/drive/v2/rest",
-                "discoveryLink": "./apis/drive/v2/rest",
-                "icons": {
-                  "x16": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_16.png",
-                  "x32": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_32.png"
-                },
-                "documentationLink": "https://developers.google.com/drive/",
-                "preferred": false
-              },
-              {
-                "kind": "discovery#directoryItem",
-                "id": "drive:v3",
-                "name": "drivev3",
-                "version": "v3",
-                "title": "Drive API",
-                "description": "Manages files in Drive including uploading, downloading, searching, detecting changes, and updating sharing permissions.",
-                "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/drive/v3/rest",
-                "discoveryLink": "./apis/drive/v3/rest",
-                "icons": {
-                  "x16": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_16.png",
-                  "x32": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_32.png"
-                },
-                "documentationLink": "https://developers.google.com/drive/",
-                "preferred": true
-              },
-              {
-                "kind": "discovery#directoryItem",
-                "id": "driveactivity:v2",
-                "name": "driveactivityv2",
-                "version": "v2",
-                "title": "Drive Activity API",
-                "description": "Provides a historical view of activity in Google Drive.",
-                "discoveryRestUrl": "https://driveactivity.googleapis.com/$discovery/rest?version=v2",
-                "icons": {
-                  "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-                  "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-                },
-                "documentationLink": "https://developers.google.com/drive/activity/",
-                "preferred": true
-              },
-              {
-                "kind": "discovery#directoryItem",
-                "id": "drivelabels:v2beta",
-                "name": "drivelabelsv2beta",
-                "version": "v2beta",
-                "title": "Drive Labels API",
-                "description": "An API for managing Drive Labels",
-                "discoveryRestUrl": "https://drivelabels.googleapis.com/$discovery/rest?version=v2beta",
-                "icons": {
-                  "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-                  "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-                },
-                "documentationLink": "https://developers.google.com/drive/labels",
-                "preferred": false
-              },
-              {
-                "kind": "discovery#directoryItem",
-                "id": "drivelabels:v2",
-                "name": "drivelabelsv2",
-                "version": "v2",
-                "title": "Drive Labels API",
-                "description": "An API for managing Drive Labels",
-                "discoveryRestUrl": "https://drivelabels.googleapis.com/$discovery/rest?version=v2",
-                "icons": {
-                  "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-                  "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-                },
-                "documentationLink": "https://developers.google.com/drive/labels",
-                "preferred": true
-              },
-        ];
-
-        for(let service of includedServices){
-            try {       
-                logger.info(`checking ${service.name}...`);
-
-                const svcResp = await fetch(service.discoveryRestUrl);
-                const svcData = await svcResp.json();        
-
-                logger.info(`--------------------------------------`);
-                logger.info(`processing service ${service.name} ...`);
-                logger.info(`--------------------------------------`);
-                await processService('googleworkspace', service.name, svcData, servicesDir, debug);
-
-            } catch (err) {
-                // crash program if error
-                logger.error(err);
+        } catch (err) {
+            // crash program if error
+            logger.error(err);
+            if(service.name != 'poly'){
                 process.exit(1);
             }
         }
     }
 
     // add provider.yaml file
-    await generateProviderIndex(provider, servicesDir, providerDir, configObj, debug);
+    await generateProviderIndex(provider, servicesDir, providerDir, providerConfig[provider]['configObj'], debug);
 
     const runtime = Math.round(process.uptime() * 100) / 100;
     logger.info(`generate completed in ${runtime}s. ${services.length} files generated.`);

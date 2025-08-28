@@ -11,8 +11,6 @@ This script performs the following steps:
 2. Gets each respective service discovery document from the root discovery document (can be filtered to only fetch `preferred` service versions)
 3. Converts each service discovery document to an OpenAPI 3.x specification, written as a `yaml` file to the `openapi` folder
 
-The resultant OpenAPI service specifications can the be used with [`stackql/openapisaurus`](https://github.com/stackql/openapisaurus) to generate [StackQL Google provider definitions](https://registry.stackql.io/providers/google/).
-
 ## Usage
 
 Mac/Linux:
@@ -29,7 +27,7 @@ Windows/PowerShell:
     
 ```powershell
 npm install
-node .\bin\google-discovery-to-openapi.mjs generate
+node .\bin\google-discovery-to-openapi.mjs generate googleapis.com --debug
 ```
 
 ## Tests
@@ -38,12 +36,32 @@ To Run tests locally, clone [stackql-provider-tests](https://github.com/stackql/
 
 ```bash
 # run from the directory you cloned into
-cd ../../stackql-provider-tests/
+cd ../../core/stackql-provider-tests/
 sh test-provider.sh \
 google \
 false \
-/mnt/c/LocalGitRepos/stackql/openapi-conversion/google-discovery-to-openapi/openapi \
+/mnt/c/LocalGitRepos/stackql/providers/stackql-provider-google/openapi \
 true
+
+sh test-provider.sh \
+googleworkspace \
+false \
+/mnt/c/LocalGitRepos/stackql/providers/stackql-provider-google/openapi \
+true
+
+sh test-provider.sh \
+googleadmin \
+false \
+/mnt/c/LocalGitRepos/stackql/providers/stackql-provider-google/openapi \
+true
+
+sh test-provider.sh \
+firebase \
+false \
+/mnt/c/LocalGitRepos/stackql/providers/stackql-provider-google/openapi \
+true
+
+cd ../../providers/stackql-provider-google/
 ```
 
 ## Inspect
@@ -78,7 +96,7 @@ npm run generate-docs -- \
   --provider-name google \
   --provider-dir ./openapi/src/googleapis.com/v00.00.00000 \
   --output-dir ./website/google \
-  --provider-data-dir ./provider-dev/docgen/provider-data/google
+  --provider-data-dir ./docgen/provider-data/google
 sh bin/fix-broken-links-google.sh   
 
 # googleadmin
@@ -87,7 +105,7 @@ npm run generate-docs -- \
   --provider-name googleadmin \
   --provider-dir ./openapi/src/googleadmin/v00.00.00000 \
   --output-dir ./website/googleadmin \
-  --provider-data-dir ./provider-dev/docgen/provider-data/googleadmin
+  --provider-data-dir ./docgen/provider-data/googleadmin
 
 # googleworkspace
 rm -rf ./website/googleworkspace/docs/*
@@ -95,7 +113,7 @@ npm run generate-docs -- \
   --provider-name googleworkspace \
   --provider-dir ./openapi/src/googleworkspace/v00.00.00000 \
   --output-dir ./website/googleworkspace \
-  --provider-data-dir ./provider-dev/docgen/provider-data/googleworkspace
+  --provider-data-dir ./docgen/provider-data/googleworkspace
 
 # firebase
 rm -rf ./website/firebase/docs/*
@@ -103,7 +121,7 @@ npm run generate-docs -- \
   --provider-name firebase \
   --provider-dir ./openapi/src/firebase/v00.00.00000 \
   --output-dir ./website/firebase \
-  --provider-data-dir ./provider-dev/docgen/provider-data/firebase
+  --provider-data-dir ./docgen/provider-data/firebase
 ```  
 
 ### 8. Test web docs locally
