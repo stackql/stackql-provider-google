@@ -104,7 +104,7 @@ Successful response
 <tr>
     <td><CopyableCode code="serviceAccount" /></td>
     <td><code>string</code></td>
-    <td>Optional. The IAM service account email associated with the trigger. The service account represents the identity of the trigger. The `iam.serviceAccounts.actAs` permission must be granted on the service account to allow a principal to impersonate the service account. For more information, see the [Roles and permissions](/eventarc/docs/all-roles-permissions) page specific to the trigger destination.</td>
+    <td>Optional. The IAM service account email associated with the trigger. The service account represents the identity of the trigger. The `iam.serviceAccounts.actAs` permission must be granted on the service account to allow a principal to impersonate the service account. For more information, see the [Roles and permissions](https://cloud.google.com/eventarc/docs/all-roles-permissions) page specific to the trigger destination.</td>
 </tr>
 <tr>
     <td><CopyableCode code="transport" /></td>
@@ -190,7 +190,7 @@ Successful response
 <tr>
     <td><CopyableCode code="serviceAccount" /></td>
     <td><code>string</code></td>
-    <td>Optional. The IAM service account email associated with the trigger. The service account represents the identity of the trigger. The `iam.serviceAccounts.actAs` permission must be granted on the service account to allow a principal to impersonate the service account. For more information, see the [Roles and permissions](/eventarc/docs/all-roles-permissions) page specific to the trigger destination.</td>
+    <td>Optional. The IAM service account email associated with the trigger. The service account represents the identity of the trigger. The `iam.serviceAccounts.actAs` permission must be granted on the service account to allow a principal to impersonate the service account. For more information, see the [Roles and permissions](https://cloud.google.com/eventarc/docs/all-roles-permissions) page specific to the trigger destination.</td>
 </tr>
 <tr>
     <td><CopyableCode code="transport" /></td>
@@ -483,7 +483,7 @@ response
     - name: serviceAccount
       value: string
       description: >
-        Optional. The IAM service account email associated with the trigger. The service account represents the identity of the trigger. The `iam.serviceAccounts.actAs` permission must be granted on the service account to allow a principal to impersonate the service account. For more information, see the [Roles and permissions](/eventarc/docs/all-roles-permissions) page specific to the trigger destination.
+        Optional. The IAM service account email associated with the trigger. The service account represents the identity of the trigger. The `iam.serviceAccounts.actAs` permission must be granted on the service account to allow a principal to impersonate the service account. For more information, see the [Roles and permissions](https://cloud.google.com/eventarc/docs/all-roles-permissions) page specific to the trigger destination.
         
     - name: destination
       value: object

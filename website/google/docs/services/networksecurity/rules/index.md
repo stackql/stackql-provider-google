@@ -54,7 +54,7 @@ Successful response
 <tr>
     <td><CopyableCode code="name" /></td>
     <td><code>string</code></td>
-    <td>Required. Immutable. Name of the resource. ame is the full resource name so projects/&#123;project&#125;/locations/&#123;location&#125;/gatewaySecurityPolicies/&#123;gateway_security_policy&#125;/rules/&#123;rule&#125; rule should match the pattern: (^[a-z]([a-z0-9-]&#123;0,61&#125;[a-z0-9])?$).</td>
+    <td>Required. Immutable. Name of the resource. ame is the full resource name so projects/&#123;project&#125;/locations/&#123;location&#125;/gatewaySecurityPolicies/&#123;gateway_security_policy&#125;/rules/&#123;rule&#125; rule should match the pattern: (^&#91;a-z&#93;([a-z0-9-]&#123;0,61&#125;[a-z0-9])?$).</td>
 </tr>
 <tr>
     <td><CopyableCode code="applicationMatcher" /></td>
@@ -120,7 +120,7 @@ Successful response
 <tr>
     <td><CopyableCode code="name" /></td>
     <td><code>string</code></td>
-    <td>Required. Immutable. Name of the resource. ame is the full resource name so projects/&#123;project&#125;/locations/&#123;location&#125;/gatewaySecurityPolicies/&#123;gateway_security_policy&#125;/rules/&#123;rule&#125; rule should match the pattern: (^[a-z]([a-z0-9-]&#123;0,61&#125;[a-z0-9])?$).</td>
+    <td>Required. Immutable. Name of the resource. ame is the full resource name so projects/&#123;project&#125;/locations/&#123;location&#125;/gatewaySecurityPolicies/&#123;gateway_security_policy&#125;/rules/&#123;rule&#125; rule should match the pattern: (^&#91;a-z&#93;([a-z0-9-]&#123;0,61&#125;[a-z0-9])?$).</td>
 </tr>
 <tr>
     <td><CopyableCode code="applicationMatcher" /></td>
@@ -414,7 +414,7 @@ response
     - name: name
       value: string
       description: >
-        Required. Immutable. Name of the resource. ame is the full resource name so projects/{project}/locations/{location}/gatewaySecurityPolicies/{gateway_security_policy}/rules/{rule} rule should match the pattern: (^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$).
+        Required. Immutable. Name of the resource. ame is the full resource name so projects/{project}/locations/{location}/gatewaySecurityPolicies/{gateway_security_policy}/rules/{rule} rule should match the pattern: (^&#91;a-z&#93;([a-z0-9-]{0,61}[a-z0-9])?$).
         
     - name: enabled
       value: boolean

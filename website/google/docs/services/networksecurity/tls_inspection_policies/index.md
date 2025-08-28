@@ -54,7 +54,7 @@ Successful response
 <tr>
     <td><CopyableCode code="name" /></td>
     <td><code>string</code></td>
-    <td>Required. Name of the resource. Name is of the form projects/&#123;project&#125;/locations/&#123;location&#125;/tlsInspectionPolicies/&#123;tls_inspection_policy&#125; tls_inspection_policy should match the pattern:(^[a-z]([a-z0-9-]&#123;0,61&#125;[a-z0-9])?$).</td>
+    <td>Required. Name of the resource. Name is of the form projects/&#123;project&#125;/locations/&#123;location&#125;/tlsInspectionPolicies/&#123;tls_inspection_policy&#125; tls_inspection_policy should match the pattern:(^&#91;a-z&#93;([a-z0-9-]&#123;0,61&#125;[a-z0-9])?$).</td>
 </tr>
 <tr>
     <td><CopyableCode code="caPool" /></td>
@@ -120,7 +120,7 @@ Successful response
 <tr>
     <td><CopyableCode code="name" /></td>
     <td><code>string</code></td>
-    <td>Required. Name of the resource. Name is of the form projects/&#123;project&#125;/locations/&#123;location&#125;/tlsInspectionPolicies/&#123;tls_inspection_policy&#125; tls_inspection_policy should match the pattern:(^[a-z]([a-z0-9-]&#123;0,61&#125;[a-z0-9])?$).</td>
+    <td>Required. Name of the resource. Name is of the form projects/&#123;project&#125;/locations/&#123;location&#125;/tlsInspectionPolicies/&#123;tls_inspection_policy&#125; tls_inspection_policy should match the pattern:(^&#91;a-z&#93;([a-z0-9-]&#123;0,61&#125;[a-z0-9])?$).</td>
 </tr>
 <tr>
     <td><CopyableCode code="caPool" /></td>
@@ -401,7 +401,7 @@ response
     - name: name
       value: string
       description: >
-        Required. Name of the resource. Name is of the form projects/{project}/locations/{location}/tlsInspectionPolicies/{tls_inspection_policy} tls_inspection_policy should match the pattern:(^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$).
+        Required. Name of the resource. Name is of the form projects/{project}/locations/{location}/tlsInspectionPolicies/{tls_inspection_policy} tls_inspection_policy should match the pattern:(^&#91;a-z&#93;([a-z0-9-]{0,61}[a-z0-9])?$).
         
     - name: description
       value: string

@@ -105,7 +105,7 @@ Successful response
 <tr>
     <td><CopyableCode code="apiProductName" /></td>
     <td><code>string</code></td>
-    <td>Required. Immutable. The `name` field of the associated [API product](/apigee/docs/reference/apis/apigee/rest/v1/organizations.apiproducts). A portal may have only one catalog item associated with a given API product.</td>
+    <td>Required. Immutable. The `name` field of the associated [API product](https://cloud.google.com/apigee/docs/reference/apis/apigee/rest/v1/organizations.apiproducts). A portal may have only one catalog item associated with a given API product.</td>
 </tr>
 <tr>
     <td><CopyableCode code="categoryIds" /></td>
@@ -140,7 +140,7 @@ Successful response
 <tr>
     <td><CopyableCode code="imageUrl" /></td>
     <td><code>string</code></td>
-    <td>Optional. Location of the image used for the catalog item in the catalog. This can be either an image with an external URL or a file path for [image files stored in the portal](/apigee/docs/api-platform/publish/portal/portal-files"), for example, `/files/book-tree.jpg`. When specifying the URL of an external image, the image won't be uploaded to your assets; additionally, loading the image in the integrated portal will be subject to its availability, which may be blocked or restricted by [content security policies](/apigee/docs/api-platform/publish/portal/csp). Max length of file path is 2,083 characters.</td>
+    <td>Optional. Location of the image used for the catalog item in the catalog. This can be either an image with an external URL or a file path for [image files stored in the portal](https://cloud.google.com/apigee/docs/api-platform/publish/portal/portal-files), for example, `/files/book-tree.jpg`. When specifying the URL of an external image, the image won't be uploaded to your assets; additionally, loading the image in the integrated portal will be subject to its availability, which may be blocked or restricted by [content security policies](https://cloud.google.com/apigee/docs/api-platform/publish/portal/csp). Max length of file path is 2,083 characters.</td>
 </tr>
 <tr>
     <td><CopyableCode code="modified" /></td>
@@ -428,7 +428,7 @@ status
     - name: apiProductName
       value: string
       description: >
-        Required. Immutable. The `name` field of the associated [API product](/apigee/docs/reference/apis/apigee/rest/v1/organizations.apiproducts). A portal may have only one catalog item associated with a given API product.
+        Required. Immutable. The `name` field of the associated [API product](https://cloud.google.com/apigee/docs/reference/apis/apigee/rest/v1/organizations.apiproducts). A portal may have only one catalog item associated with a given API product.
         
     - name: requireCallbackUrl
       value: boolean
@@ -438,7 +438,7 @@ status
     - name: imageUrl
       value: string
       description: >
-        Optional. Location of the image used for the catalog item in the catalog. This can be either an image with an external URL or a file path for [image files stored in the portal](/apigee/docs/api-platform/publish/portal/portal-files"), for example, `/files/book-tree.jpg`. When specifying the URL of an external image, the image won't be uploaded to your assets; additionally, loading the image in the integrated portal will be subject to its availability, which may be blocked or restricted by [content security policies](/apigee/docs/api-platform/publish/portal/csp). Max length of file path is 2,083 characters.
+        Optional. Location of the image used for the catalog item in the catalog. This can be either an image with an external URL or a file path for [image files stored in the portal](https://cloud.google.com/apigee/docs/api-platform/publish/portal/portal-files), for example, `/files/book-tree.jpg`. When specifying the URL of an external image, the image won't be uploaded to your assets; additionally, loading the image in the integrated portal will be subject to its availability, which may be blocked or restricted by [content security policies](https://cloud.google.com/apigee/docs/api-platform/publish/portal/csp). Max length of file path is 2,083 characters.
         
     - name: categoryIds
       value: array

@@ -54,7 +54,7 @@ Successful response
 <tr>
     <td><CopyableCode code="name" /></td>
     <td><code>string</code></td>
-    <td>Required. Name of the resource. Name is of the form projects/&#123;project&#125;/locations/&#123;location&#125;/gatewaySecurityPolicies/&#123;gateway_security_policy&#125; gateway_security_policy should match the pattern:(^[a-z]([a-z0-9-]&#123;0,61&#125;[a-z0-9])?$).</td>
+    <td>Required. Name of the resource. Name is of the form projects/&#123;project&#125;/locations/&#123;location&#125;/gatewaySecurityPolicies/&#123;gateway_security_policy&#125; gateway_security_policy should match the pattern:(^&#91;a-z&#93;([a-z0-9-]&#123;0,61&#125;[a-z0-9])?$).</td>
 </tr>
 <tr>
     <td><CopyableCode code="createTime" /></td>
@@ -95,7 +95,7 @@ Successful response
 <tr>
     <td><CopyableCode code="name" /></td>
     <td><code>string</code></td>
-    <td>Required. Name of the resource. Name is of the form projects/&#123;project&#125;/locations/&#123;location&#125;/gatewaySecurityPolicies/&#123;gateway_security_policy&#125; gateway_security_policy should match the pattern:(^[a-z]([a-z0-9-]&#123;0,61&#125;[a-z0-9])?$).</td>
+    <td>Required. Name of the resource. Name is of the form projects/&#123;project&#125;/locations/&#123;location&#125;/gatewaySecurityPolicies/&#123;gateway_security_policy&#125; gateway_security_policy should match the pattern:(^&#91;a-z&#93;([a-z0-9-]&#123;0,61&#125;[a-z0-9])?$).</td>
 </tr>
 <tr>
     <td><CopyableCode code="createTime" /></td>
@@ -326,7 +326,7 @@ response
     - name: name
       value: string
       description: >
-        Required. Name of the resource. Name is of the form projects/{project}/locations/{location}/gatewaySecurityPolicies/{gateway_security_policy} gateway_security_policy should match the pattern:(^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$).
+        Required. Name of the resource. Name is of the form projects/{project}/locations/{location}/gatewaySecurityPolicies/{gateway_security_policy} gateway_security_policy should match the pattern:(^&#91;a-z&#93;([a-z0-9-]{0,61}[a-z0-9])?$).
         
     - name: description
       value: string

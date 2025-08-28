@@ -59,7 +59,7 @@ Successful response
 <tr>
     <td><CopyableCode code="authorizedNetwork" /></td>
     <td><code>string</code></td>
-    <td>Required. The full names of the Google Compute Engine [networks](/compute/docs/networks-and-firewalls#networks) to which the instance is connected. Caller needs to make sure that CIDR subnets do not overlap between networks, else peering creation will fail.</td>
+    <td>Required. The full names of the Google Compute Engine [networks](https://cloud.google.com/compute/docs/networks-and-firewalls#networks) to which the instance is connected. Caller needs to make sure that CIDR subnets do not overlap between networks, else peering creation will fail.</td>
 </tr>
 <tr>
     <td><CopyableCode code="createTime" /></td>
@@ -115,7 +115,7 @@ Successful response
 <tr>
     <td><CopyableCode code="authorizedNetwork" /></td>
     <td><code>string</code></td>
-    <td>Required. The full names of the Google Compute Engine [networks](/compute/docs/networks-and-firewalls#networks) to which the instance is connected. Caller needs to make sure that CIDR subnets do not overlap between networks, else peering creation will fail.</td>
+    <td>Required. The full names of the Google Compute Engine [networks](https://cloud.google.com/compute/docs/networks-and-firewalls#networks) to which the instance is connected. Caller needs to make sure that CIDR subnets do not overlap between networks, else peering creation will fail.</td>
 </tr>
 <tr>
     <td><CopyableCode code="createTime" /></td>
@@ -367,7 +367,7 @@ response
     - name: authorizedNetwork
       value: string
       description: >
-        Required. The full names of the Google Compute Engine [networks](/compute/docs/networks-and-firewalls#networks) to which the instance is connected. Caller needs to make sure that CIDR subnets do not overlap between networks, else peering creation will fail.
+        Required. The full names of the Google Compute Engine [networks](https://cloud.google.com/compute/docs/networks-and-firewalls#networks) to which the instance is connected. Caller needs to make sure that CIDR subnets do not overlap between networks, else peering creation will fail.
         
     - name: domainResource
       value: string

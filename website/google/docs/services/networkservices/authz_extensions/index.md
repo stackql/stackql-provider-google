@@ -84,7 +84,7 @@ Successful response
 <tr>
     <td><CopyableCode code="labels" /></td>
     <td><code>object</code></td>
-    <td>Optional. Set of labels associated with the `AuthzExtension` resource. The format must comply with [the requirements for labels](/compute/docs/labeling-resources#requirements) for Google Cloud resources.</td>
+    <td>Optional. Set of labels associated with the `AuthzExtension` resource. The format must comply with [the requirements for labels](https://cloud.google.com/compute/docs/labeling-resources#requirements) for Google Cloud resources.</td>
 </tr>
 <tr>
     <td><CopyableCode code="loadBalancingScheme" /></td>
@@ -165,7 +165,7 @@ Successful response
 <tr>
     <td><CopyableCode code="labels" /></td>
     <td><code>object</code></td>
-    <td>Optional. Set of labels associated with the `AuthzExtension` resource. The format must comply with [the requirements for labels](/compute/docs/labeling-resources#requirements) for Google Cloud resources.</td>
+    <td>Optional. Set of labels associated with the `AuthzExtension` resource. The format must comply with [the requirements for labels](https://cloud.google.com/compute/docs/labeling-resources#requirements) for Google Cloud resources.</td>
 </tr>
 <tr>
     <td><CopyableCode code="loadBalancingScheme" /></td>
@@ -467,7 +467,7 @@ response
     - name: labels
       value: object
       description: >
-        Optional. Set of labels associated with the `AuthzExtension` resource. The format must comply with [the requirements for labels](/compute/docs/labeling-resources#requirements) for Google Cloud resources.
+        Optional. Set of labels associated with the `AuthzExtension` resource. The format must comply with [the requirements for labels](https://cloud.google.com/compute/docs/labeling-resources#requirements) for Google Cloud resources.
         
     - name: loadBalancingScheme
       value: string

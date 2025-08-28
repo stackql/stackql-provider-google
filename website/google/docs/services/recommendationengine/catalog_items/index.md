@@ -74,7 +74,7 @@ Successful response
 <tr>
     <td><CopyableCode code="itemGroupId" /></td>
     <td><code>string</code></td>
-    <td>Optional. Variant group identifier for prediction results. UTF-8 encoded string with a length limit of 128 bytes. This field must be enabled before it can be used. [Learn more](/recommendations-ai/docs/catalog#item-group-id).</td>
+    <td>Optional. Variant group identifier for prediction results. UTF-8 encoded string with a length limit of 128 bytes. This field must be enabled before it can be used. [Learn more](https://cloud.google.com/recommendations-ai/docs/catalog#item-group-id).</td>
 </tr>
 <tr>
     <td><CopyableCode code="languageCode" /></td>
@@ -135,7 +135,7 @@ Successful response
 <tr>
     <td><CopyableCode code="itemGroupId" /></td>
     <td><code>string</code></td>
-    <td>Optional. Variant group identifier for prediction results. UTF-8 encoded string with a length limit of 128 bytes. This field must be enabled before it can be used. [Learn more](/recommendations-ai/docs/catalog#item-group-id).</td>
+    <td>Optional. Variant group identifier for prediction results. UTF-8 encoded string with a length limit of 128 bytes. This field must be enabled before it can be used. [Learn more](https://cloud.google.com/recommendations-ai/docs/catalog#item-group-id).</td>
 </tr>
 <tr>
     <td><CopyableCode code="languageCode" /></td>
@@ -443,7 +443,7 @@ title
     - name: itemGroupId
       value: string
       description: >
-        Optional. Variant group identifier for prediction results. UTF-8 encoded string with a length limit of 128 bytes. This field must be enabled before it can be used. [Learn more](/recommendations-ai/docs/catalog#item-group-id).
+        Optional. Variant group identifier for prediction results. UTF-8 encoded string with a length limit of 128 bytes. This field must be enabled before it can be used. [Learn more](https://cloud.google.com/recommendations-ai/docs/catalog#item-group-id).
         
     - name: productMetadata
       value: object

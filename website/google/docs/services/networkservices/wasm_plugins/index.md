@@ -69,7 +69,7 @@ Successful response
 <tr>
     <td><CopyableCode code="labels" /></td>
     <td><code>object</code></td>
-    <td>Optional. Set of labels associated with the `WasmPlugin` resource. The format must comply with [the following requirements](/compute/docs/labeling-resources#requirements).</td>
+    <td>Optional. Set of labels associated with the `WasmPlugin` resource. The format must comply with [the following requirements](https://cloud.google.com/compute/docs/labeling-resources#requirements).</td>
 </tr>
 <tr>
     <td><CopyableCode code="logConfig" /></td>
@@ -130,7 +130,7 @@ Successful response
 <tr>
     <td><CopyableCode code="labels" /></td>
     <td><code>object</code></td>
-    <td>Optional. Set of labels associated with the `WasmPlugin` resource. The format must comply with [the following requirements](/compute/docs/labeling-resources#requirements).</td>
+    <td>Optional. Set of labels associated with the `WasmPlugin` resource. The format must comply with [the following requirements](https://cloud.google.com/compute/docs/labeling-resources#requirements).</td>
 </tr>
 <tr>
     <td><CopyableCode code="logConfig" /></td>
@@ -396,7 +396,7 @@ response
     - name: labels
       value: object
       description: >
-        Optional. Set of labels associated with the `WasmPlugin` resource. The format must comply with [the following requirements](/compute/docs/labeling-resources#requirements).
+        Optional. Set of labels associated with the `WasmPlugin` resource. The format must comply with [the following requirements](https://cloud.google.com/compute/docs/labeling-resources#requirements).
         
     - name: mainVersionId
       value: string

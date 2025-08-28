@@ -69,7 +69,7 @@ Successful response
 <tr>
     <td><CopyableCode code="authorizedNetworks" /></td>
     <td><code>array</code></td>
-    <td>Optional. The full names of the Google Compute Engine [networks](/compute/docs/networks-and-firewalls#networks) the domain instance is connected to. Networks can be added using UpdateDomain. The domain is only available on networks listed in `authorized_networks`. If CIDR subnets overlap between networks, domain creation will fail.</td>
+    <td>Optional. The full names of the Google Compute Engine [networks](https://cloud.google.com/compute/docs/networks-and-firewalls#networks) the domain instance is connected to. Networks can be added using UpdateDomain. The domain is only available on networks listed in `authorized_networks`. If CIDR subnets overlap between networks, domain creation will fail.</td>
 </tr>
 <tr>
     <td><CopyableCode code="createTime" /></td>
@@ -150,7 +150,7 @@ Successful response
 <tr>
     <td><CopyableCode code="authorizedNetworks" /></td>
     <td><code>array</code></td>
-    <td>Optional. The full names of the Google Compute Engine [networks](/compute/docs/networks-and-firewalls#networks) the domain instance is connected to. Networks can be added using UpdateDomain. The domain is only available on networks listed in `authorized_networks`. If CIDR subnets overlap between networks, domain creation will fail.</td>
+    <td>Optional. The full names of the Google Compute Engine [networks](https://cloud.google.com/compute/docs/networks-and-firewalls#networks) the domain instance is connected to. Networks can be added using UpdateDomain. The domain is only available on networks listed in `authorized_networks`. If CIDR subnets overlap between networks, domain creation will fail.</td>
 </tr>
 <tr>
     <td><CopyableCode code="createTime" /></td>
@@ -517,7 +517,7 @@ response
     - name: authorizedNetworks
       value: array
       description: >
-        Optional. The full names of the Google Compute Engine [networks](/compute/docs/networks-and-firewalls#networks) the domain instance is connected to. Networks can be added using UpdateDomain. The domain is only available on networks listed in `authorized_networks`. If CIDR subnets overlap between networks, domain creation will fail.
+        Optional. The full names of the Google Compute Engine [networks](https://cloud.google.com/compute/docs/networks-and-firewalls#networks) the domain instance is connected to. Networks can be added using UpdateDomain. The domain is only available on networks listed in `authorized_networks`. If CIDR subnets overlap between networks, domain creation will fail.
         
     - name: reservedIpRange
       value: string

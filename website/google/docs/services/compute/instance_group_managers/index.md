@@ -60,7 +60,7 @@ Successful response
 <tr>
     <td><CopyableCode code="name" /></td>
     <td><code>string</code></td>
-    <td>The name of the managed instance group. The name must be 1-63 characters long, and comply with RFC1035. (pattern: [a-z](?:[-a-z0-9]&#123;0,61&#125;[a-z0-9])?)</td>
+    <td>The name of the managed instance group. The name must be 1-63 characters long, and comply with RFC1035. (pattern: &#91;a-z&#93;(?:[-a-z0-9]&#123;0,61&#125;[a-z0-9])?)</td>
 </tr>
 <tr>
     <td><CopyableCode code="allInstancesConfig" /></td>
@@ -75,7 +75,7 @@ Successful response
 <tr>
     <td><CopyableCode code="baseInstanceName" /></td>
     <td><code>string</code></td>
-    <td>The base instance name is a prefix that you want to attach to the names of all VMs in a MIG. The maximum character length is 58 and the name must comply with RFC1035 format. When a VM is created in the group, the MIG appends a hyphen and a random four-character string to the base instance name. If you want the MIG to assign sequential numbers instead of a random string, then end the base instance name with a hyphen followed by one or more hash symbols. The hash symbols indicate the number of digits. For example, a base instance name of "vm-###" results in "vm-001" as a VM name. @pattern [a-z](([-a-z0-9]&#123;0,57&#125;)|([-a-z0-9]&#123;0,51&#125;-#&#123;1,10&#125;(\\[[0-9]&#123;1,10&#125;\\])?))</td>
+    <td>The base instance name is a prefix that you want to attach to the names of all VMs in a MIG. The maximum character length is 58 and the name must comply with RFC1035 format. When a VM is created in the group, the MIG appends a hyphen and a random four-character string to the base instance name. If you want the MIG to assign sequential numbers instead of a random string, then end the base instance name with a hyphen followed by one or more hash symbols. The hash symbols indicate the number of digits. For example, a base instance name of "vm-###" results in "vm-001" as a VM name. @pattern &#91;a-z&#93;(([-a-z0-9]&#123;0,57&#125;)|([-a-z0-9]&#123;0,51&#125;-#&#123;1,10&#125;(\\[[0-9]&#123;1,10&#125;\\])?))</td>
 </tr>
 <tr>
     <td><CopyableCode code="creationTimestamp" /></td>
@@ -282,7 +282,7 @@ Successful response
 <tr>
     <td><CopyableCode code="name" /></td>
     <td><code>string</code></td>
-    <td>The name of the managed instance group. The name must be 1-63 characters long, and comply with RFC1035. (pattern: [a-z](?:[-a-z0-9]&#123;0,61&#125;[a-z0-9])?)</td>
+    <td>The name of the managed instance group. The name must be 1-63 characters long, and comply with RFC1035. (pattern: &#91;a-z&#93;(?:[-a-z0-9]&#123;0,61&#125;[a-z0-9])?)</td>
 </tr>
 <tr>
     <td><CopyableCode code="allInstancesConfig" /></td>
@@ -297,7 +297,7 @@ Successful response
 <tr>
     <td><CopyableCode code="baseInstanceName" /></td>
     <td><code>string</code></td>
-    <td>The base instance name is a prefix that you want to attach to the names of all VMs in a MIG. The maximum character length is 58 and the name must comply with RFC1035 format. When a VM is created in the group, the MIG appends a hyphen and a random four-character string to the base instance name. If you want the MIG to assign sequential numbers instead of a random string, then end the base instance name with a hyphen followed by one or more hash symbols. The hash symbols indicate the number of digits. For example, a base instance name of "vm-###" results in "vm-001" as a VM name. @pattern [a-z](([-a-z0-9]&#123;0,57&#125;)|([-a-z0-9]&#123;0,51&#125;-#&#123;1,10&#125;(\\[[0-9]&#123;1,10&#125;\\])?))</td>
+    <td>The base instance name is a prefix that you want to attach to the names of all VMs in a MIG. The maximum character length is 58 and the name must comply with RFC1035 format. When a VM is created in the group, the MIG appends a hyphen and a random four-character string to the base instance name. If you want the MIG to assign sequential numbers instead of a random string, then end the base instance name with a hyphen followed by one or more hash symbols. The hash symbols indicate the number of digits. For example, a base instance name of "vm-###" results in "vm-001" as a VM name. @pattern &#91;a-z&#93;(([-a-z0-9]&#123;0,57&#125;)|([-a-z0-9]&#123;0,51&#125;-#&#123;1,10&#125;(\\[[0-9]&#123;1,10&#125;\\])?))</td>
 </tr>
 <tr>
     <td><CopyableCode code="creationTimestamp" /></td>
@@ -978,7 +978,7 @@ zone
     - name: baseInstanceName
       value: string
       description: >
-        The base instance name is a prefix that you want to attach to the names of all VMs in a MIG. The maximum character length is 58 and the name must comply with RFC1035 format. When a VM is created in the group, the MIG appends a hyphen and a random four-character string to the base instance name. If you want the MIG to assign sequential numbers instead of a random string, then end the base instance name with a hyphen followed by one or more hash symbols. The hash symbols indicate the number of digits. For example, a base instance name of "vm-###" results in "vm-001" as a VM name. @pattern [a-z](([-a-z0-9]{0,57})|([-a-z0-9]{0,51}-#{1,10}(\\[[0-9]{1,10}\\])?))
+        The base instance name is a prefix that you want to attach to the names of all VMs in a MIG. The maximum character length is 58 and the name must comply with RFC1035 format. When a VM is created in the group, the MIG appends a hyphen and a random four-character string to the base instance name. If you want the MIG to assign sequential numbers instead of a random string, then end the base instance name with a hyphen followed by one or more hash symbols. The hash symbols indicate the number of digits. For example, a base instance name of "vm-###" results in "vm-001" as a VM name. @pattern &#91;a-z&#93;(([-a-z0-9]{0,57})|([-a-z0-9]{0,51}-#{1,10}(\\[[0-9]{1,10}\\])?))
         
     - name: fingerprint
       value: string

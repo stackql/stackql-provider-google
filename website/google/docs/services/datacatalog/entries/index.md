@@ -184,7 +184,7 @@ Successful response
 <tr>
     <td><CopyableCode code="type" /></td>
     <td><code>string</code></td>
-    <td>The type of the entry. For details, see [`EntryType`](#entrytype).</td>
+    <td>The type of the entry. For details, see [`EntryType`](https://cloud.google.com/data-catalog/docs/reference/rest/v1/projects.locations.entryGroups.entries#entrytype).</td>
 </tr>
 <tr>
     <td><CopyableCode code="usageSignal" /></td>
@@ -350,7 +350,7 @@ Successful response
 <tr>
     <td><CopyableCode code="type" /></td>
     <td><code>string</code></td>
-    <td>The type of the entry. For details, see [`EntryType`](#entrytype).</td>
+    <td>The type of the entry. For details, see [`EntryType`](https://cloud.google.com/data-catalog/docs/reference/rest/v1/projects.locations.entryGroups.entries#entrytype).</td>
 </tr>
 <tr>
     <td><CopyableCode code="usageSignal" /></td>
@@ -788,7 +788,7 @@ userSpecifiedType
     - name: type
       value: string
       description: >
-        The type of the entry. For details, see [`EntryType`](#entrytype).
+        The type of the entry. For details, see [`EntryType`](https://cloud.google.com/data-catalog/docs/reference/rest/v1/projects.locations.entryGroups.entries#entrytype).
         
       valid_values: ['ENTRY_TYPE_UNSPECIFIED', 'TABLE', 'MODEL', 'DATA_STREAM', 'FILESET', 'CLUSTER', 'DATABASE', 'DATA_SOURCE_CONNECTION', 'ROUTINE', 'LAKE', 'ZONE', 'SERVICE', 'DATABASE_SCHEMA', 'DASHBOARD', 'EXPLORE', 'LOOK', 'FEATURE_ONLINE_STORE', 'FEATURE_VIEW', 'FEATURE_GROUP']
     - name: userSpecifiedType
