@@ -214,9 +214,6 @@ export async function generateSpecs(options, rootDir) {
     // create spec directory
     const providerDir = path.join(outputDir, provider, 'v00.00.00000'); 
     let servicesDir = path.join(providerDir, 'services');
-    if(!preferred && provider != 'googleadmin'){
-        servicesDir = path.join(outputDir, provider == 'googleapis.com' ? 'google_beta' : `${provider}_beta`, 'v00.00.00000', 'services');
-    }
     createOrCleanDir(servicesDir, debug);
     removeProviderIndexFile(providerDir, debug);
 
@@ -227,8 +224,7 @@ export async function generateSpecs(options, rootDir) {
 
     if('includedServiceData' in providerConfig[provider]){
         // explict service list
-
-
+        services = providerConfig[provider]['includedServiceData'];
     } else {
         // get all services from `rootDiscoveryUrl`
         logger.info(`Getting data from ${providerConfig[provider]['rootDiscoveryUrl']}...`);
@@ -239,6 +235,12 @@ export async function generateSpecs(options, rootDir) {
         services = rootData.items.filter(item => 
             !providerConfig[provider]['excludedServices'].includes(item.name)
         );
+
+        // Filter out services matching excludedServiceNamePattern if it exists
+        if ('excludedServiceNamePattern' in providerConfig[provider]) {
+        const regex = new RegExp(providerConfig[provider]['excludedServiceNamePattern']);
+        services = services.filter(service => !regex.test(service.name));
+        }
 
         // add `additionalServiceData` if any
         services = services.concat(providerConfig[provider]['additionalServiceData']);
@@ -286,11 +288,19 @@ export async function generateSpecs(options, rootDir) {
                 && Object.keys(svcData['auth']['oauth2']['scopes']).length > 0
             ){
                 logger.info('Checking OAuth scopes...');
-                if (Object.keys(svcData.auth.oauth2.scopes).includes(providerConfig[provider]['requiredScope'])) {
-                    logger.info(`--------------------------------------`);
-                    logger.info(`processing service ${service.name} ...`);
-                    logger.info(`--------------------------------------`);
-                    await processService(provider, service.name, svcData, servicesDir, debug);
+                if (providerConfig[provider]['requiredScopes'].some(requiredScope => 
+                    Object.keys(svcData.auth.oauth2.scopes).includes(requiredScope))) {
+                    const serviceName = (() => {
+                        if (providerConfig[provider]['serviceNameMap'] && 
+                            providerConfig[provider]['serviceNameMap'][service.name]) {
+                            return providerConfig[provider]['serviceNameMap'][service.name];
+                        }
+                        return service.name;
+                    })();
+                    logger.info(`-------------------------------------------------------`);
+                    logger.info(`processing service ${service.name} as ${serviceName}...`);
+                    logger.info(`-------------------------------------------------------`);
+                    await processService(provider, serviceName, svcData, servicesDir, debug);
                 } else {
                     logger.info(`service ${service.name} does not have required scope, skipping...`);
                 }
@@ -308,7 +318,7 @@ export async function generateSpecs(options, rootDir) {
     }
 
     // add provider.yaml file
-    await generateProviderIndex(provider, servicesDir, providerDir, configObj, debug);
+    await generateProviderIndex(provider, servicesDir, providerDir, providerConfig[provider]['configObj'], debug);
 
     const runtime = Math.round(process.uptime() * 100) / 100;
     logger.info(`generate completed in ${runtime}s. ${services.length} files generated.`);

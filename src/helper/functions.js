@@ -187,6 +187,11 @@ export function generateStackQLResources(provider, openapiDoc, service, debug) {
               const operationId = openapiDoc.paths[path][verb].operationId;
               const operationObj = openapiDoc.paths[path][verb];
               const [resource, action] = getResource(service, operationId, debug);
+
+              if (resource === 'skip_this_resource') {
+                  continue;
+              }
+
               const methodName = getMethodName(service, operationId, debug);
               const sqlVerb = getSQLVerb(service, resource, action, operationId, path, verb, operationObj, schemasObj, debug);
               const numPathParams = path.split('/').filter(token => token.startsWith('{')).length;
@@ -194,7 +199,7 @@ export function generateStackQLResources(provider, openapiDoc, service, debug) {
 
               if (!xStackQLResources[resource]) {
                   xStackQLResources[resource] = {
-                      id: `${provider}.${service}.${resource}`,
+                      id: `${provider === 'googleapis.com' ? 'google' : provider}.${service}.${resource}`,
                       name: resource,
                       title: resource.charAt(0).toUpperCase() + resource.slice(1),
                       methods: {},

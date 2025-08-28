@@ -7,8 +7,8 @@
 import {themes as prismThemes} from 'prism-react-renderer';
 
 // Provider configuration - change these for different providers
-const providerName = "snowflake";
-const providerTitle = "Snowflake";
+const providerName = "firebase";
+const providerTitle = "Firebase";
 
 const providerDropDownListItems = [
   {

@@ -175,7 +175,7 @@ export const resourceNameOverridesByOperationId = {
         'compute.regionDisks.removeResourcePolicies': 'disks_resource_policies',
         'compute.networkFirewallPolicies.list': 'firewall_policies',
         'compute.networkFirewallPolicies.get': 'firewall_policies',
-        'compute.networkFirewallPolicies.aggregatedList': 'firewall_policies_aggregated',
+        'compute.networkFirewallPolicies.aggregatedList': 'skip_this_resource',
         'compute.regionNetworkFirewallPolicies.list': 'firewall_policies',
         'compute.regionNetworkFirewallPolicies.get': 'firewall_policies',
         'compute.networkFirewallPolicies.insert': 'firewall_policies',

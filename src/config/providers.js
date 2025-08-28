@@ -1,6 +1,6 @@
 export const providerConfig = {
   'googleapis.com': {
-    rootDiscoveryUrl: 'https://discovery.googleapis.com/discovery/v1/apis',  
+    rootDiscoveryUrl: 'https://discovery.googleapis.com/discovery/v1/apis?preferred=true',  
     additionalServiceData: [
           {
               name: "geminicloudassist",
@@ -87,8 +87,15 @@ export const providerConfig = {
           preferred: true
           },            
     ],
-    excludedServices: ["iam"],
-    requiredScope: 'https://www.googleapis.com/auth/cloud-platform',
+    excludedServices: [
+      'iam',
+      'fcm',
+      'fcmdata',
+      'testing',
+      'toolresults'      
+    ],
+    excludedServiceNamePattern: '^firebase($|.*)',
+    requiredScopes: ['https://www.googleapis.com/auth/cloud-platform'],
     configObj: {
       auth: {
           credentialsenvvar: 'GOOGLE_CREDENTIALS',
@@ -97,7 +104,7 @@ export const providerConfig = {
     }
   },
   firebase: {
-      rootDiscoveryUrl: 'https://discovery.googleapis.com/discovery/v1/apis',  
+      rootDiscoveryUrl: 'https://discovery.googleapis.com/discovery/v1/apis?preferred=true',  
       additionalServiceData: [],
       excludedServices: [],
       includedServiceNames: [
@@ -106,8 +113,19 @@ export const providerConfig = {
         'testing',
         'toolresults'
       ],
+      serviceNameMap: {
+        firebaseappcheck: 'appcheck',
+        firebaseappdistribution: 'appdistribution',
+        firebaseapphosting: 'apphosting',
+        firebasedatabase: 'database',
+        firebasedataconnect: 'dataconnect',
+        firebasehosting: 'hosting',
+        firebaseml: 'ml',
+        firebaserules: 'rules',
+        firebasestorage: 'storage'
+      },
       includedServiceNamePattern: '^firebase($|.*)',
-      requiredScope: 'https://www.googleapis.com/auth/cloud-platform',
+      requiredScopes: ['https://www.googleapis.com/auth/cloud-platform'],
       configObj: {
         auth: {
             credentialsenvvar: 'GOOGLE_CREDENTIALS',
@@ -116,9 +134,14 @@ export const providerConfig = {
       }
   },
   googleworkspace: {
-      rootDiscoveryUrl: 'https://discovery.googleapis.com/discovery/v1/apis',  
+      rootDiscoveryUrl: 'https://discovery.googleapis.com/discovery/v1/apis?preferred=true',  
       additionalServiceData: [],
-      excludedServices: [],      
+      excludedServices: [], 
+      requiredScopes: [
+          "https://www.googleapis.com/auth/drive",
+          "https://www.googleapis.com/auth/drive.activity",
+          "https://www.googleapis.com/auth/drive.admin.labels"
+      ],     
       includedServiceData: [
           {
               "kind": "discovery#directoryItem",
@@ -208,7 +231,20 @@ export const providerConfig = {
   googleadmin: {
       rootDiscoveryUrl: 'https://admin.googleapis.com/$discovery/rest?version=directory_v1',  
       additionalServiceData: [],
-      excludedServices: [],  
+      excludedServices: [],
+      includedServiceData: [
+          {
+              "kind": "discovery#directoryItem",
+              "id": "directory:v1",
+              "name": "directory",
+              "version": "v1",
+              "title": "Directory API",
+              "description": "Google Admin API.",
+              "discoveryRestUrl": "https://admin.googleapis.com/$discovery/rest?version=directory_v1",
+              "preferred": true
+            },
+      ],      
+      requiredScopes: ['https://www.googleapis.com/auth/cloud-platform'],
       configObj: {
         auth: {
             credentialsenvvar: 'GOOGLE_CREDENTIALS',
