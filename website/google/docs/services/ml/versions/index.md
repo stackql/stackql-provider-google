@@ -59,7 +59,7 @@ Successful response
 <tr>
     <td><CopyableCode code="acceleratorConfig" /></td>
     <td><code>object</code></td>
-    <td>Optional. Accelerator config for using GPUs for online prediction (beta). Only specify this field if you have specified a Compute Engine (N1) machine type in the `machineType` field. Learn more about [using GPUs for online prediction](/ml-engine/docs/machine-types-online-prediction#gpus). (id: GoogleCloudMlV1__AcceleratorConfig)</td>
+    <td>Optional. Accelerator config for using GPUs for online prediction (beta). Only specify this field if you have specified a Compute Engine (N1) machine type in the `machineType` field. Learn more about [using GPUs for online prediction](https://cloud.google.com/ml-engine/docs/machine-types-online-prediction#gpus). (id: GoogleCloudMlV1__AcceleratorConfig)</td>
 </tr>
 <tr>
     <td><CopyableCode code="autoScaling" /></td>
@@ -79,7 +79,7 @@ Successful response
 <tr>
     <td><CopyableCode code="deploymentUri" /></td>
     <td><code>string</code></td>
-    <td>The Cloud Storage URI of a directory containing trained model artifacts to be used to create the model version. See the [guide to deploying models](/ai-platform/prediction/docs/deploying-models) for more information. The total number of files under this directory must not exceed 1000. During projects.models.versions.create, AI Platform Prediction copies all files from the specified directory to a location managed by the service. From then on, AI Platform Prediction uses these copies of the model artifacts to serve predictions, not the original files in Cloud Storage, so this location is useful only as a historical record. If you specify container, then this field is optional. Otherwise, it is required. Learn [how to use this field with a custom container](/ai-platform/prediction/docs/custom-container-requirements#artifacts).</td>
+    <td>The Cloud Storage URI of a directory containing trained model artifacts to be used to create the model version. See the [guide to deploying models](https://cloud.google.com/ai-platform/prediction/docs/deploying-models) for more information. The total number of files under this directory must not exceed 1000. During projects.models.versions.create, AI Platform Prediction copies all files from the specified directory to a location managed by the service. From then on, AI Platform Prediction uses these copies of the model artifacts to serve predictions, not the original files in Cloud Storage, so this location is useful only as a historical record. If you specify container, then this field is optional. Otherwise, it is required. Learn [how to use this field with a custom container](https://cloud.google.com/ai-platform/prediction/docs/custom-container-requirements#artifacts).</td>
 </tr>
 <tr>
     <td><CopyableCode code="description" /></td>
@@ -104,7 +104,7 @@ Successful response
 <tr>
     <td><CopyableCode code="framework" /></td>
     <td><code>string</code></td>
-    <td>Optional. The machine learning framework AI Platform uses to train this version of the model. Valid values are `TENSORFLOW`, `SCIKIT_LEARN`, `XGBOOST`. If you do not specify a framework, AI Platform will analyze files in the deployment_uri to determine a framework. If you choose `SCIKIT_LEARN` or `XGBOOST`, you must also set the runtime version of the model to 1.4 or greater. Do **not** specify a framework if you're deploying a [custom prediction routine](/ai-platform/prediction/docs/custom-prediction-routines) or if you're using a [custom container](/ai-platform/prediction/docs/use-custom-container).</td>
+    <td>Optional. The machine learning framework AI Platform uses to train this version of the model. Valid values are `TENSORFLOW`, `SCIKIT_LEARN`, `XGBOOST`. If you do not specify a framework, AI Platform will analyze files in the deployment_uri to determine a framework. If you choose `SCIKIT_LEARN` or `XGBOOST`, you must also set the runtime version of the model to 1.4 or greater. Do **not** specify a framework if you're deploying a [custom prediction routine](https://cloud.google.com/ai-platform/prediction/docs/custom-prediction-routines) or if you're using a [custom container](https://cloud.google.com/ai-platform/prediction/docs/use-custom-container).</td>
 </tr>
 <tr>
     <td><CopyableCode code="isDefault" /></td>
@@ -134,7 +134,7 @@ Successful response
 <tr>
     <td><CopyableCode code="machineType" /></td>
     <td><code>string</code></td>
-    <td>Optional. The type of machine on which to serve the model. Currently only applies to online prediction service. To learn about valid values for this field, read [Choosing a machine type for online prediction](/ai-platform/prediction/docs/machine-types-online-prediction). If this field is not specified and you are using a [regional endpoint](/ai-platform/prediction/docs/regional-endpoints), then the machine type defaults to `n1-standard-2`. If this field is not specified and you are using the global endpoint (`ml.googleapis.com`), then the machine type defaults to `mls1-c1-m2`.</td>
+    <td>Optional. The type of machine on which to serve the model. Currently only applies to online prediction service. To learn about valid values for this field, read [Choosing a machine type for online prediction](https://cloud.google.com/ai-platform/prediction/docs/machine-types-online-prediction). If this field is not specified and you are using a [regional endpoint](https://cloud.google.com/ai-platform/prediction/docs/regional-endpoints), then the machine type defaults to `n1-standard-2`. If this field is not specified and you are using the global endpoint (`ml.googleapis.com`), then the machine type defaults to `mls1-c1-m2`.</td>
 </tr>
 <tr>
     <td><CopyableCode code="manualScaling" /></td>
@@ -144,17 +144,17 @@ Successful response
 <tr>
     <td><CopyableCode code="packageUris" /></td>
     <td><code>array</code></td>
-    <td>Optional. Cloud Storage paths (`gs://…`) of packages for [custom prediction routines](/ml-engine/docs/tensorflow/custom-prediction-routines) or [scikit-learn pipelines with custom code](/ml-engine/docs/scikit/exporting-for-prediction#custom-pipeline-code). For a custom prediction routine, one of these packages must contain your Predictor class (see [`predictionClass`](#Version.FIELDS.prediction_class)). Additionally, include any dependencies used by your Predictor or scikit-learn pipeline uses that are not already included in your selected [runtime version](/ml-engine/docs/tensorflow/runtime-version-list). If you specify this field, you must also set [`runtimeVersion`](#Version.FIELDS.runtime_version) to 1.4 or greater.</td>
+    <td>Optional. Cloud Storage paths (`gs://…`) of packages for [custom prediction routines](https://cloud.google.com/ml-engine/docs/tensorflow/custom-prediction-routines) or [scikit-learn pipelines with custom code](https://cloud.google.com/ml-engine/docs/scikit/exporting-for-prediction#custom-pipeline-code). For a custom prediction routine, one of these packages must contain your Predictor class (see `predictionClass`). Additionally, include any dependencies used by your Predictor or scikit-learn pipeline uses that are not already included in your selected [runtime version](https://cloud.google.com/ml-engine/docs/tensorflow/runtime-version-list). If you specify this field, you must also set `runtimeVersion` to 1.4 or greater.</td>
 </tr>
 <tr>
     <td><CopyableCode code="predictionClass" /></td>
     <td><code>string</code></td>
-    <td>Optional. The fully qualified name (module_name.class_name) of a class that implements the Predictor interface described in this reference field. The module containing this class should be included in a package provided to the [`packageUris` field](#Version.FIELDS.package_uris). Specify this field if and only if you are deploying a [custom prediction routine (beta)](/ml-engine/docs/tensorflow/custom-prediction-routines). If you specify this field, you must set [`runtimeVersion`](#Version.FIELDS.runtime_version) to 1.4 or greater and you must set `machineType` to a [legacy (MLS1) machine type](/ml-engine/docs/machine-types-online-prediction). The following code sample provides the Predictor interface: class Predictor(object): """Interface for constructing custom predictors.""" def predict(self, instances, **kwargs): """Performs custom prediction. Instances are the decoded values from the request. They have already been deserialized from JSON. Args: instances: A list of prediction input instances. **kwargs: A dictionary of keyword args provided as additional fields on the predict request body. Returns: A list of outputs containing the prediction results. This list must be JSON serializable. """ raise NotImplementedError() @classmethod def from_path(cls, model_dir): """Creates an instance of Predictor using the given path. Loading of the predictor should be done in this method. Args: model_dir: The local directory that contains the exported model file along with any additional files uploaded when creating the version resource. Returns: An instance implementing this Predictor class. """ raise NotImplementedError() Learn more about [the Predictor interface and custom prediction routines](/ml-engine/docs/tensorflow/custom-prediction-routines).</td>
+    <td>Optional. The fully qualified name (module_name.class_name) of a class that implements the Predictor interface described in this reference field. The module containing this class should be included in a package provided to the `packageUris` field. Specify this field if and only if you are deploying a [custom prediction routine (beta)](https://cloud.google.com/ml-engine/docs/tensorflow/custom-prediction-routines). If you specify this field, you must set `runtimeVersion` to 1.4 or greater and you must set `machineType` to a [legacy (MLS1) machine type](https://cloud.google.com/ml-engine/docs/machine-types-online-prediction). The following code sample provides the Predictor interface: class Predictor(object): """Interface for constructing custom predictors.""" def predict(self, instances, **kwargs): """Performs custom prediction. Instances are the decoded values from the request. They have already been deserialized from JSON. Args: instances: A list of prediction input instances. **kwargs: A dictionary of keyword args provided as additional fields on the predict request body. Returns: A list of outputs containing the prediction results. This list must be JSON serializable. """ raise NotImplementedError() @classmethod def from_path(cls, model_dir): """Creates an instance of Predictor using the given path. Loading of the predictor should be done in this method. Args: model_dir: The local directory that contains the exported model file along with any additional files uploaded when creating the version resource. Returns: An instance implementing this Predictor class. """ raise NotImplementedError() Learn more about [the Predictor interface and custom prediction routines](https://cloud.google.com/ml-engine/docs/tensorflow/custom-prediction-routines).</td>
 </tr>
 <tr>
     <td><CopyableCode code="pythonVersion" /></td>
     <td><code>string</code></td>
-    <td>Required. The version of Python used in prediction. The following Python versions are available: * Python '3.7' is available when `runtime_version` is set to '1.15' or later. * Python '3.5' is available when `runtime_version` is set to a version from '1.4' to '1.14'. * Python '2.7' is available when `runtime_version` is set to '1.15' or earlier. Read more about the Python versions available for [each runtime version](/ml-engine/docs/runtime-version-list).</td>
+    <td>Required. The version of Python used in prediction. The following Python versions are available: * Python '3.7' is available when `runtime_version` is set to '1.15' or later. * Python '3.5' is available when `runtime_version` is set to a version from '1.4' to '1.14'. * Python '2.7' is available when `runtime_version` is set to '1.15' or earlier. Read more about the Python versions available for [each runtime version](https://cloud.google.com/ml-engine/docs/runtime-version-list).</td>
 </tr>
 <tr>
     <td><CopyableCode code="requestLoggingConfig" /></td>
@@ -169,12 +169,12 @@ Successful response
 <tr>
     <td><CopyableCode code="runtimeVersion" /></td>
     <td><code>string</code></td>
-    <td>Required. The AI Platform runtime version to use for this deployment. For more information, see the [runtime version list](/ml-engine/docs/runtime-version-list) and [how to manage runtime versions](/ml-engine/docs/versioning).</td>
+    <td>Required. The AI Platform runtime version to use for this deployment. For more information, see the [runtime version list](https://cloud.google.com/ml-engine/docs/runtime-version-list) and [how to manage runtime versions](https://cloud.google.com/ml-engine/docs/versioning).</td>
 </tr>
 <tr>
     <td><CopyableCode code="serviceAccount" /></td>
     <td><code>string</code></td>
-    <td>Optional. Specifies the service account for resource access control. If you specify this field, then you must also specify either the `containerSpec` or the `predictionClass` field. Learn more about [using a custom service account](/ai-platform/prediction/docs/custom-service-account).</td>
+    <td>Optional. Specifies the service account for resource access control. If you specify this field, then you must also specify either the `containerSpec` or the `predictionClass` field. Learn more about [using a custom service account](https://cloud.google.com/ai-platform/prediction/docs/custom-service-account).</td>
 </tr>
 <tr>
     <td><CopyableCode code="state" /></td>
@@ -205,7 +205,7 @@ Successful response
 <tr>
     <td><CopyableCode code="acceleratorConfig" /></td>
     <td><code>object</code></td>
-    <td>Optional. Accelerator config for using GPUs for online prediction (beta). Only specify this field if you have specified a Compute Engine (N1) machine type in the `machineType` field. Learn more about [using GPUs for online prediction](/ml-engine/docs/machine-types-online-prediction#gpus). (id: GoogleCloudMlV1__AcceleratorConfig)</td>
+    <td>Optional. Accelerator config for using GPUs for online prediction (beta). Only specify this field if you have specified a Compute Engine (N1) machine type in the `machineType` field. Learn more about [using GPUs for online prediction](https://cloud.google.com/ml-engine/docs/machine-types-online-prediction#gpus). (id: GoogleCloudMlV1__AcceleratorConfig)</td>
 </tr>
 <tr>
     <td><CopyableCode code="autoScaling" /></td>
@@ -225,7 +225,7 @@ Successful response
 <tr>
     <td><CopyableCode code="deploymentUri" /></td>
     <td><code>string</code></td>
-    <td>The Cloud Storage URI of a directory containing trained model artifacts to be used to create the model version. See the [guide to deploying models](/ai-platform/prediction/docs/deploying-models) for more information. The total number of files under this directory must not exceed 1000. During projects.models.versions.create, AI Platform Prediction copies all files from the specified directory to a location managed by the service. From then on, AI Platform Prediction uses these copies of the model artifacts to serve predictions, not the original files in Cloud Storage, so this location is useful only as a historical record. If you specify container, then this field is optional. Otherwise, it is required. Learn [how to use this field with a custom container](/ai-platform/prediction/docs/custom-container-requirements#artifacts).</td>
+    <td>The Cloud Storage URI of a directory containing trained model artifacts to be used to create the model version. See the [guide to deploying models](https://cloud.google.com/ai-platform/prediction/docs/deploying-models) for more information. The total number of files under this directory must not exceed 1000. During projects.models.versions.create, AI Platform Prediction copies all files from the specified directory to a location managed by the service. From then on, AI Platform Prediction uses these copies of the model artifacts to serve predictions, not the original files in Cloud Storage, so this location is useful only as a historical record. If you specify container, then this field is optional. Otherwise, it is required. Learn [how to use this field with a custom container](https://cloud.google.com/ai-platform/prediction/docs/custom-container-requirements#artifacts).</td>
 </tr>
 <tr>
     <td><CopyableCode code="description" /></td>
@@ -250,7 +250,7 @@ Successful response
 <tr>
     <td><CopyableCode code="framework" /></td>
     <td><code>string</code></td>
-    <td>Optional. The machine learning framework AI Platform uses to train this version of the model. Valid values are `TENSORFLOW`, `SCIKIT_LEARN`, `XGBOOST`. If you do not specify a framework, AI Platform will analyze files in the deployment_uri to determine a framework. If you choose `SCIKIT_LEARN` or `XGBOOST`, you must also set the runtime version of the model to 1.4 or greater. Do **not** specify a framework if you're deploying a [custom prediction routine](/ai-platform/prediction/docs/custom-prediction-routines) or if you're using a [custom container](/ai-platform/prediction/docs/use-custom-container).</td>
+    <td>Optional. The machine learning framework AI Platform uses to train this version of the model. Valid values are `TENSORFLOW`, `SCIKIT_LEARN`, `XGBOOST`. If you do not specify a framework, AI Platform will analyze files in the deployment_uri to determine a framework. If you choose `SCIKIT_LEARN` or `XGBOOST`, you must also set the runtime version of the model to 1.4 or greater. Do **not** specify a framework if you're deploying a [custom prediction routine](https://cloud.google.com/ai-platform/prediction/docs/custom-prediction-routines) or if you're using a [custom container](https://cloud.google.com/ai-platform/prediction/docs/use-custom-container).</td>
 </tr>
 <tr>
     <td><CopyableCode code="isDefault" /></td>
@@ -280,7 +280,7 @@ Successful response
 <tr>
     <td><CopyableCode code="machineType" /></td>
     <td><code>string</code></td>
-    <td>Optional. The type of machine on which to serve the model. Currently only applies to online prediction service. To learn about valid values for this field, read [Choosing a machine type for online prediction](/ai-platform/prediction/docs/machine-types-online-prediction). If this field is not specified and you are using a [regional endpoint](/ai-platform/prediction/docs/regional-endpoints), then the machine type defaults to `n1-standard-2`. If this field is not specified and you are using the global endpoint (`ml.googleapis.com`), then the machine type defaults to `mls1-c1-m2`.</td>
+    <td>Optional. The type of machine on which to serve the model. Currently only applies to online prediction service. To learn about valid values for this field, read [Choosing a machine type for online prediction](https://cloud.google.com/ai-platform/prediction/docs/machine-types-online-prediction). If this field is not specified and you are using a [regional endpoint](https://cloud.google.com/ai-platform/prediction/docs/regional-endpoints), then the machine type defaults to `n1-standard-2`. If this field is not specified and you are using the global endpoint (`ml.googleapis.com`), then the machine type defaults to `mls1-c1-m2`.</td>
 </tr>
 <tr>
     <td><CopyableCode code="manualScaling" /></td>
@@ -290,17 +290,17 @@ Successful response
 <tr>
     <td><CopyableCode code="packageUris" /></td>
     <td><code>array</code></td>
-    <td>Optional. Cloud Storage paths (`gs://…`) of packages for [custom prediction routines](/ml-engine/docs/tensorflow/custom-prediction-routines) or [scikit-learn pipelines with custom code](/ml-engine/docs/scikit/exporting-for-prediction#custom-pipeline-code). For a custom prediction routine, one of these packages must contain your Predictor class (see [`predictionClass`](#Version.FIELDS.prediction_class)). Additionally, include any dependencies used by your Predictor or scikit-learn pipeline uses that are not already included in your selected [runtime version](/ml-engine/docs/tensorflow/runtime-version-list). If you specify this field, you must also set [`runtimeVersion`](#Version.FIELDS.runtime_version) to 1.4 or greater.</td>
+    <td>Optional. Cloud Storage paths (`gs://…`) of packages for [custom prediction routines](https://cloud.google.com/ml-engine/docs/tensorflow/custom-prediction-routines) or [scikit-learn pipelines with custom code](https://cloud.google.com/ml-engine/docs/scikit/exporting-for-prediction#custom-pipeline-code). For a custom prediction routine, one of these packages must contain your Predictor class (see `predictionClass`). Additionally, include any dependencies used by your Predictor or scikit-learn pipeline uses that are not already included in your selected [runtime version](https://cloud.google.com/ml-engine/docs/tensorflow/runtime-version-list). If you specify this field, you must also set `runtimeVersion` to 1.4 or greater.</td>
 </tr>
 <tr>
     <td><CopyableCode code="predictionClass" /></td>
     <td><code>string</code></td>
-    <td>Optional. The fully qualified name (module_name.class_name) of a class that implements the Predictor interface described in this reference field. The module containing this class should be included in a package provided to the [`packageUris` field](#Version.FIELDS.package_uris). Specify this field if and only if you are deploying a [custom prediction routine (beta)](/ml-engine/docs/tensorflow/custom-prediction-routines). If you specify this field, you must set [`runtimeVersion`](#Version.FIELDS.runtime_version) to 1.4 or greater and you must set `machineType` to a [legacy (MLS1) machine type](/ml-engine/docs/machine-types-online-prediction). The following code sample provides the Predictor interface: class Predictor(object): """Interface for constructing custom predictors.""" def predict(self, instances, **kwargs): """Performs custom prediction. Instances are the decoded values from the request. They have already been deserialized from JSON. Args: instances: A list of prediction input instances. **kwargs: A dictionary of keyword args provided as additional fields on the predict request body. Returns: A list of outputs containing the prediction results. This list must be JSON serializable. """ raise NotImplementedError() @classmethod def from_path(cls, model_dir): """Creates an instance of Predictor using the given path. Loading of the predictor should be done in this method. Args: model_dir: The local directory that contains the exported model file along with any additional files uploaded when creating the version resource. Returns: An instance implementing this Predictor class. """ raise NotImplementedError() Learn more about [the Predictor interface and custom prediction routines](/ml-engine/docs/tensorflow/custom-prediction-routines).</td>
+    <td>Optional. The fully qualified name (module_name.class_name) of a class that implements the Predictor interface described in this reference field. The module containing this class should be included in a package provided to the `packageUris` field. Specify this field if and only if you are deploying a [custom prediction routine (beta)](https://cloud.google.com/ml-engine/docs/tensorflow/custom-prediction-routines). If you specify this field, you must set `runtimeVersion` to 1.4 or greater and you must set `machineType` to a [legacy (MLS1) machine type](https://cloud.google.com/ml-engine/docs/machine-types-online-prediction). The following code sample provides the Predictor interface: class Predictor(object): """Interface for constructing custom predictors.""" def predict(self, instances, **kwargs): """Performs custom prediction. Instances are the decoded values from the request. They have already been deserialized from JSON. Args: instances: A list of prediction input instances. **kwargs: A dictionary of keyword args provided as additional fields on the predict request body. Returns: A list of outputs containing the prediction results. This list must be JSON serializable. """ raise NotImplementedError() @classmethod def from_path(cls, model_dir): """Creates an instance of Predictor using the given path. Loading of the predictor should be done in this method. Args: model_dir: The local directory that contains the exported model file along with any additional files uploaded when creating the version resource. Returns: An instance implementing this Predictor class. """ raise NotImplementedError() Learn more about [the Predictor interface and custom prediction routines](https://cloud.google.com/ml-engine/docs/tensorflow/custom-prediction-routines).</td>
 </tr>
 <tr>
     <td><CopyableCode code="pythonVersion" /></td>
     <td><code>string</code></td>
-    <td>Required. The version of Python used in prediction. The following Python versions are available: * Python '3.7' is available when `runtime_version` is set to '1.15' or later. * Python '3.5' is available when `runtime_version` is set to a version from '1.4' to '1.14'. * Python '2.7' is available when `runtime_version` is set to '1.15' or earlier. Read more about the Python versions available for [each runtime version](/ml-engine/docs/runtime-version-list).</td>
+    <td>Required. The version of Python used in prediction. The following Python versions are available: * Python '3.7' is available when `runtime_version` is set to '1.15' or later. * Python '3.5' is available when `runtime_version` is set to a version from '1.4' to '1.14'. * Python '2.7' is available when `runtime_version` is set to '1.15' or earlier. Read more about the Python versions available for [each runtime version](https://cloud.google.com/ml-engine/docs/runtime-version-list).</td>
 </tr>
 <tr>
     <td><CopyableCode code="requestLoggingConfig" /></td>
@@ -315,12 +315,12 @@ Successful response
 <tr>
     <td><CopyableCode code="runtimeVersion" /></td>
     <td><code>string</code></td>
-    <td>Required. The AI Platform runtime version to use for this deployment. For more information, see the [runtime version list](/ml-engine/docs/runtime-version-list) and [how to manage runtime versions](/ml-engine/docs/versioning).</td>
+    <td>Required. The AI Platform runtime version to use for this deployment. For more information, see the [runtime version list](https://cloud.google.com/ml-engine/docs/runtime-version-list) and [how to manage runtime versions](https://cloud.google.com/ml-engine/docs/versioning).</td>
 </tr>
 <tr>
     <td><CopyableCode code="serviceAccount" /></td>
     <td><code>string</code></td>
-    <td>Optional. Specifies the service account for resource access control. If you specify this field, then you must also specify either the `containerSpec` or the `predictionClass` field. Learn more about [using a custom service account](/ai-platform/prediction/docs/custom-service-account).</td>
+    <td>Optional. Specifies the service account for resource access control. If you specify this field, then you must also specify either the `containerSpec` or the `predictionClass` field. Learn more about [using a custom service account](https://cloud.google.com/ai-platform/prediction/docs/custom-service-account).</td>
 </tr>
 <tr>
     <td><CopyableCode code="state" /></td>
@@ -641,7 +641,7 @@ response
     - name: deploymentUri
       value: string
       description: >
-        The Cloud Storage URI of a directory containing trained model artifacts to be used to create the model version. See the [guide to deploying models](/ai-platform/prediction/docs/deploying-models) for more information. The total number of files under this directory must not exceed 1000. During projects.models.versions.create, AI Platform Prediction copies all files from the specified directory to a location managed by the service. From then on, AI Platform Prediction uses these copies of the model artifacts to serve predictions, not the original files in Cloud Storage, so this location is useful only as a historical record. If you specify container, then this field is optional. Otherwise, it is required. Learn [how to use this field with a custom container](/ai-platform/prediction/docs/custom-container-requirements#artifacts).
+        The Cloud Storage URI of a directory containing trained model artifacts to be used to create the model version. See the [guide to deploying models](https://cloud.google.com/ai-platform/prediction/docs/deploying-models) for more information. The total number of files under this directory must not exceed 1000. During projects.models.versions.create, AI Platform Prediction copies all files from the specified directory to a location managed by the service. From then on, AI Platform Prediction uses these copies of the model artifacts to serve predictions, not the original files in Cloud Storage, so this location is useful only as a historical record. If you specify container, then this field is optional. Otherwise, it is required. Learn [how to use this field with a custom container](https://cloud.google.com/ai-platform/prediction/docs/custom-container-requirements#artifacts).
         
     - name: createTime
       value: string
@@ -656,12 +656,12 @@ response
     - name: runtimeVersion
       value: string
       description: >
-        Required. The AI Platform runtime version to use for this deployment. For more information, see the [runtime version list](/ml-engine/docs/runtime-version-list) and [how to manage runtime versions](/ml-engine/docs/versioning).
+        Required. The AI Platform runtime version to use for this deployment. For more information, see the [runtime version list](https://cloud.google.com/ml-engine/docs/runtime-version-list) and [how to manage runtime versions](https://cloud.google.com/ml-engine/docs/versioning).
         
     - name: machineType
       value: string
       description: >
-        Optional. The type of machine on which to serve the model. Currently only applies to online prediction service. To learn about valid values for this field, read [Choosing a machine type for online prediction](/ai-platform/prediction/docs/machine-types-online-prediction). If this field is not specified and you are using a [regional endpoint](/ai-platform/prediction/docs/regional-endpoints), then the machine type defaults to `n1-standard-2`. If this field is not specified and you are using the global endpoint (`ml.googleapis.com`), then the machine type defaults to `mls1-c1-m2`.
+        Optional. The type of machine on which to serve the model. Currently only applies to online prediction service. To learn about valid values for this field, read [Choosing a machine type for online prediction](https://cloud.google.com/ai-platform/prediction/docs/machine-types-online-prediction). If this field is not specified and you are using a [regional endpoint](https://cloud.google.com/ai-platform/prediction/docs/regional-endpoints), then the machine type defaults to `n1-standard-2`. If this field is not specified and you are using the global endpoint (`ml.googleapis.com`), then the machine type defaults to `mls1-c1-m2`.
         
     - name: autoScaling
       value: object
@@ -687,12 +687,12 @@ response
     - name: predictionClass
       value: string
       description: >
-        Optional. The fully qualified name (module_name.class_name) of a class that implements the Predictor interface described in this reference field. The module containing this class should be included in a package provided to the [`packageUris` field](#Version.FIELDS.package_uris). Specify this field if and only if you are deploying a [custom prediction routine (beta)](/ml-engine/docs/tensorflow/custom-prediction-routines). If you specify this field, you must set [`runtimeVersion`](#Version.FIELDS.runtime_version) to 1.4 or greater and you must set `machineType` to a [legacy (MLS1) machine type](/ml-engine/docs/machine-types-online-prediction). The following code sample provides the Predictor interface: class Predictor(object): """Interface for constructing custom predictors.""" def predict(self, instances, **kwargs): """Performs custom prediction. Instances are the decoded values from the request. They have already been deserialized from JSON. Args: instances: A list of prediction input instances. **kwargs: A dictionary of keyword args provided as additional fields on the predict request body. Returns: A list of outputs containing the prediction results. This list must be JSON serializable. """ raise NotImplementedError() @classmethod def from_path(cls, model_dir): """Creates an instance of Predictor using the given path. Loading of the predictor should be done in this method. Args: model_dir: The local directory that contains the exported model file along with any additional files uploaded when creating the version resource. Returns: An instance implementing this Predictor class. """ raise NotImplementedError() Learn more about [the Predictor interface and custom prediction routines](/ml-engine/docs/tensorflow/custom-prediction-routines).
+        Optional. The fully qualified name (module_name.class_name) of a class that implements the Predictor interface described in this reference field. The module containing this class should be included in a package provided to the `packageUris` field. Specify this field if and only if you are deploying a [custom prediction routine (beta)](https://cloud.google.com/ml-engine/docs/tensorflow/custom-prediction-routines). If you specify this field, you must set `runtimeVersion` to 1.4 or greater and you must set `machineType` to a [legacy (MLS1) machine type](https://cloud.google.com/ml-engine/docs/machine-types-online-prediction). The following code sample provides the Predictor interface: class Predictor(object): """Interface for constructing custom predictors.""" def predict(self, instances, **kwargs): """Performs custom prediction. Instances are the decoded values from the request. They have already been deserialized from JSON. Args: instances: A list of prediction input instances. **kwargs: A dictionary of keyword args provided as additional fields on the predict request body. Returns: A list of outputs containing the prediction results. This list must be JSON serializable. """ raise NotImplementedError() @classmethod def from_path(cls, model_dir): """Creates an instance of Predictor using the given path. Loading of the predictor should be done in this method. Args: model_dir: The local directory that contains the exported model file along with any additional files uploaded when creating the version resource. Returns: An instance implementing this Predictor class. """ raise NotImplementedError() Learn more about [the Predictor interface and custom prediction routines](https://cloud.google.com/ml-engine/docs/tensorflow/custom-prediction-routines).
         
     - name: packageUris
       value: array
       description: >
-        Optional. Cloud Storage paths (`gs://…`) of packages for [custom prediction routines](/ml-engine/docs/tensorflow/custom-prediction-routines) or [scikit-learn pipelines with custom code](/ml-engine/docs/scikit/exporting-for-prediction#custom-pipeline-code). For a custom prediction routine, one of these packages must contain your Predictor class (see [`predictionClass`](#Version.FIELDS.prediction_class)). Additionally, include any dependencies used by your Predictor or scikit-learn pipeline uses that are not already included in your selected [runtime version](/ml-engine/docs/tensorflow/runtime-version-list). If you specify this field, you must also set [`runtimeVersion`](#Version.FIELDS.runtime_version) to 1.4 or greater.
+        Optional. Cloud Storage paths (`gs://…`) of packages for [custom prediction routines](https://cloud.google.com/ml-engine/docs/tensorflow/custom-prediction-routines) or [scikit-learn pipelines with custom code](https://cloud.google.com/ml-engine/docs/scikit/exporting-for-prediction#custom-pipeline-code). For a custom prediction routine, one of these packages must contain your Predictor class (see `predictionClass`). Additionally, include any dependencies used by your Predictor or scikit-learn pipeline uses that are not already included in your selected [runtime version](https://cloud.google.com/ml-engine/docs/tensorflow/runtime-version-list). If you specify this field, you must also set `runtimeVersion` to 1.4 or greater.
         
     - name: labels
       value: object
@@ -707,23 +707,23 @@ response
     - name: framework
       value: string
       description: >
-        Optional. The machine learning framework AI Platform uses to train this version of the model. Valid values are `TENSORFLOW`, `SCIKIT_LEARN`, `XGBOOST`. If you do not specify a framework, AI Platform will analyze files in the deployment_uri to determine a framework. If you choose `SCIKIT_LEARN` or `XGBOOST`, you must also set the runtime version of the model to 1.4 or greater. Do **not** specify a framework if you're deploying a [custom prediction routine](/ai-platform/prediction/docs/custom-prediction-routines) or if you're using a [custom container](/ai-platform/prediction/docs/use-custom-container).
+        Optional. The machine learning framework AI Platform uses to train this version of the model. Valid values are `TENSORFLOW`, `SCIKIT_LEARN`, `XGBOOST`. If you do not specify a framework, AI Platform will analyze files in the deployment_uri to determine a framework. If you choose `SCIKIT_LEARN` or `XGBOOST`, you must also set the runtime version of the model to 1.4 or greater. Do **not** specify a framework if you're deploying a [custom prediction routine](https://cloud.google.com/ai-platform/prediction/docs/custom-prediction-routines) or if you're using a [custom container](https://cloud.google.com/ai-platform/prediction/docs/use-custom-container).
         
       valid_values: ['FRAMEWORK_UNSPECIFIED', 'TENSORFLOW', 'SCIKIT_LEARN', 'XGBOOST']
     - name: pythonVersion
       value: string
       description: >
-        Required. The version of Python used in prediction. The following Python versions are available: * Python '3.7' is available when `runtime_version` is set to '1.15' or later. * Python '3.5' is available when `runtime_version` is set to a version from '1.4' to '1.14'. * Python '2.7' is available when `runtime_version` is set to '1.15' or earlier. Read more about the Python versions available for [each runtime version](/ml-engine/docs/runtime-version-list).
+        Required. The version of Python used in prediction. The following Python versions are available: * Python '3.7' is available when `runtime_version` is set to '1.15' or later. * Python '3.5' is available when `runtime_version` is set to a version from '1.4' to '1.14'. * Python '2.7' is available when `runtime_version` is set to '1.15' or earlier. Read more about the Python versions available for [each runtime version](https://cloud.google.com/ml-engine/docs/runtime-version-list).
         
     - name: acceleratorConfig
       value: object
       description: >
-        Optional. Accelerator config for using GPUs for online prediction (beta). Only specify this field if you have specified a Compute Engine (N1) machine type in the `machineType` field. Learn more about [using GPUs for online prediction](/ml-engine/docs/machine-types-online-prediction#gpus).
+        Optional. Accelerator config for using GPUs for online prediction (beta). Only specify this field if you have specified a Compute Engine (N1) machine type in the `machineType` field. Learn more about [using GPUs for online prediction](https://cloud.google.com/ml-engine/docs/machine-types-online-prediction#gpus).
         
     - name: serviceAccount
       value: string
       description: >
-        Optional. Specifies the service account for resource access control. If you specify this field, then you must also specify either the `containerSpec` or the `predictionClass` field. Learn more about [using a custom service account](/ai-platform/prediction/docs/custom-service-account).
+        Optional. Specifies the service account for resource access control. If you specify this field, then you must also specify either the `containerSpec` or the `predictionClass` field. Learn more about [using a custom service account](https://cloud.google.com/ai-platform/prediction/docs/custom-service-account).
         
     - name: requestLoggingConfig
       value: object

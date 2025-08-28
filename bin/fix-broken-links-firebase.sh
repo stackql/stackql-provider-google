@@ -6,7 +6,7 @@
 # 2. [text](/other-service/docs/path) to [text](https://cloud.google.com/other-service/docs/path)
 
 # Set the path to the docs directory relative to the bin directory
-DOCS_DIR="./website/google/docs/services"
+DOCS_DIR="./website/google/docs"
 
 # Function to process a file for multiple link patterns
 process_file() {
@@ -26,7 +26,7 @@ process_file() {
     # 4. Replace links to specific services mentioned in the additional requirements
     sed -i -E 's|\[([^]]+)\]\(/domains/pricing([^)]*)\)|\[\1\](https://cloud.google.com/domains/pricing\2)|g' "$file_path"
     sed -i -E 's|\[([^]]+)\]\(/stackdriver/pricing([^)]*)\)|\[\1\](https://cloud.google.com/stackdriver/pricing\2)|g' "$file_path"
-
+    
     # Check if any replacements were made
     if grep -q 'https://cloud.google.com/' "$file_path"; then
         echo "✓ Links updated in $file_path"
@@ -41,6 +41,7 @@ process_char_code_replacements() {
     
     # Files that need [a-z] replaced with &#91;a-z&#93;
     process_char_codes "/compute/instance_group_managers/" "compute/instance_group_managers/index.md"
+    process_char_codes "/compute/region_instance_group_managers/" "compute/region_instance_group_managers/index.md"
     process_char_codes "/networksecurity/gateway_security_policies/" "networksecurity/gateway_security_policies/index.md"
     process_char_codes "/networksecurity/rules/" "networksecurity/rules/index.md"
     process_char_codes "/networksecurity/tls_inspection_policies/" "networksecurity/tls_inspection_policies/index.md"
@@ -73,13 +74,26 @@ process_broken_links() {
     process_path "/compute/autoscalers/" "compute/autoscalers/index.md"
     process_path "/compute/disk_types/" "compute/disk_types/index.md"
     process_path "/compute/disks/" "compute/disks/index.md"
+    process_path "/compute/global_operations/" "compute/global_operations/index.md"
+    process_path "/compute/global_organization_operations/" "compute/global_organization_operations/index.md"
     process_path "/compute/health_checks/" "compute/health_checks/index.md"
     process_path "/compute/instance_templates/" "compute/instance_templates/index.md"
     process_path "/compute/projects/" "compute/projects/index.md"
+    process_path "/compute/region_autoscalers/" "compute/region_autoscalers/index.md"
+    process_path "/compute/region_disk_types/" "compute/region_disk_types/index.md"
+    process_path "/compute/region_disks/" "compute/region_disks/index.md"
+    process_path "/compute/region_health_checks/" "compute/region_health_checks/index.md"
+    process_path "/compute/region_instance_templates/" "compute/region_instance_templates/index.md"
+    process_path "/compute/region_operations/" "compute/region_operations/index.md"
+    process_path "/compute/region_ssl_certificates/" "compute/region_ssl_certificates/index.md"
+    process_path "/compute/region_target_http_proxies/" "compute/region_target_http_proxies/index.md"
+    process_path "/compute/region_target_https_proxies/" "compute/region_target_https_proxies/index.md"
+    process_path "/compute/region_url_maps/" "compute/region_url_maps/index.md"
     process_path "/compute/ssl_certificates/" "compute/ssl_certificates/index.md"
     process_path "/compute/target_http_proxies/" "compute/target_http_proxies/index.md"
     process_path "/compute/target_https_proxies/" "compute/target_https_proxies/index.md"
     process_path "/compute/url_maps/" "compute/url_maps/index.md"
+    process_path "/compute/zone_operations/" "compute/zone_operations/index.md"
     process_path "/deploymentmanager/operations/" "deploymentmanager/operations/index.md"
     process_path "/managedidentities/domains/" "managedidentities/domains/index.md"
     process_path "/managedidentities/peerings/" "managedidentities/peerings/index.md"
@@ -101,6 +115,7 @@ process_broken_links() {
     
     # Files for special character code replacements (also process for link replacements)
     process_path "/compute/instance_group_managers/" "compute/instance_group_managers/index.md"
+    process_path "/compute/region_instance_group_managers/" "compute/region_instance_group_managers/index.md"
     process_path "/networksecurity/gateway_security_policies/" "networksecurity/gateway_security_policies/index.md"
     process_path "/networksecurity/rules/" "networksecurity/rules/index.md"
     process_path "/networksecurity/tls_inspection_policies/" "networksecurity/tls_inspection_policies/index.md"
@@ -136,25 +151,5 @@ process_broken_links
 
 # Then process the special character code replacements
 process_char_code_replacements
-
-# Other replacements
-sed -i 's|\[API product\](/apigee/docs/reference/apis/apigee/rest/v1/organizations.apiproducts)|\[API product\](https://cloud.google.com/apigee/docs/reference/apis/apigee/rest/v1/organizations.apiproducts)|g' "website/google/docs/services/apigee/apidocs/index.md"
-sed -i 's|\[image files stored in the portal\](/apigee/docs/api-platform/publish/portal/portal-files")|\[image files stored in the portal\](https://cloud.google.com/apigee/docs/api-platform/publish/portal/portal-files)|g' "website/google/docs/services/apigee/apidocs/index.md"
-sed -i 's|\[content security policies\](/apigee/docs/api-platform/publish/portal/csp)|\[content security policies\](https://cloud.google.com/apigee/docs/api-platform/publish/portal/csp)|g' "website/google/docs/services/apigee/apidocs/index.md"
-sed -i 's|\[subset of actions\](/apigee/docs/api-platform/local-development/overview#prevented-actions)|\[subset of actions\](https://cloud.google.com/apigee/docs/api-platform/local-development/overview#prevented-actions)|g' "website/google/docs/services/apigee/environments/index.md"
-sed -i 's|/compute/docs/reference/rest/&#123;$api_version&#125;/|https://cloud.google.com/compute/docs/reference/rest/v1/|g' "website/google/docs/services/deploymentmanager/types/index.md"
-sed -i 's|\[Get Environment API\](get)|\[Get Environment API\](./)|g' "website/google/docs/services/apigee/environments/index.md"
-sed -i 's|\[getSyncAuthorization\](getSyncAuthorization)|\[getSyncAuthorization\](https://cloud.google.com/apigee/docs/reference/apis/apigee/rest/v1/organizations/getSyncAuthorization)|g' "website/google/docs/services/apigee/organizations/index.md"
-sed -i 's|\[updateApiProxyRevision\](updateApiProxyRevision)|\[updateApiProxyRevision\](https://cloud.google.com/apigee/docs/reference/apis/apigee/rest/v1/organizations.apis.revisions/updateApiProxyRevision)|g' "website/google/docs/services/apigee/revisions/index.md"
-sed -i 's|\[updateSharedFlowRevision\](updateSharedFlowRevision)|\[updateSharedFlowRevision\](https://cloud.google.com/apigee/docs/reference/apis/apigee/rest/v1/organizations.sharedflows.revisions/updateSharedFlowRevision)|g' "website/google/docs/services/apigee/revisions/index.md"
-sed -i 's|\[getSyncAuthorization\](organizations/getSyncAuthorization)|\[getSyncAuthorization\](https://cloud.google.com/apigee/docs/reference/apis/apigee/rest/v1/organizations/getSyncAuthorization)|g' "website/google/docs/services/apigee/sync_authorization/index.md"
-sed -i 's|\[setSyncAuthorization\](organizations/setSyncAuthorization)|\[setSyncAuthorization\](https://cloud.google.com/apigee/docs/reference/apis/apigee/rest/v1/organizations/setSyncAuthorization)|g' "website/google/docs/services/apigee/sync_authorization/index.md"
-sed -i 's|\[setSyncAuthorization\](setSyncAuthorization)|\[setSyncAuthorization\](https://cloud.google.com/apigee/docs/reference/apis/apigee/rest/v1/organizations/setSyncAuthorization)|g' "website/google/docs/services/apigee/sync_authorization/index.md"
-sed -i 's|\[BillingType\](#BillingType)|\[BillingType\](https://cloud.google.com/apigee/docs/reference/apis/apigee/rest/v1/organizations#billingtype)|g' "website/google/docs/services/apigee/organizations/index.md"
-sed -i 's|\[RuntimeType\](#RuntimeType)|\[RuntimeType\](https://cloud.google.com/apigee/docs/reference/apis/apigee/rest/v1/organizations#runtimetype)|g' "website/google/docs/services/apigee/organizations/index.md"
-sed -i 's|\[`EntryType`\](#entrytype)|\[`EntryType`\](https://cloud.google.com/data-catalog/docs/reference/rest/v1/projects.locations.entryGroups.entries#entrytype)|g' "website/google/docs/services/datacatalog/entries/index.md"
-sed -i 's|\[`predictionClass`\](#Version.FIELDS.prediction_class)|`predictionClass`|g' "website/google/docs/services/ml/versions/index.md"
-sed -i 's|\[`runtimeVersion`\](#Version.FIELDS.runtime_version)|`runtimeVersion`|g' "website/google/docs/services/ml/versions/index.md"
-sed -i 's|\[`packageUris` field\](#Version.FIELDS.package_uris)|`packageUris` field|g' "website/google/docs/services/ml/versions/index.md"
 
 echo "=== Processing complete ==="

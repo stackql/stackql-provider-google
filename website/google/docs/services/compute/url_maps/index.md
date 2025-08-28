@@ -251,7 +251,7 @@ The following methods are available for this resource:
     <td><CopyableCode code="exec" /></td>
     <td><a href="#parameter-project"><code>project</code></a>, <a href="#parameter-urlMap"><code>urlMap</code></a></td>
     <td><a href="#parameter-requestId"><code>requestId</code></a></td>
-    <td>Initiates a cache invalidation operation, invalidating the specified path, scoped to the specified UrlMap. For more information, see [Invalidating cached content](/cdn/docs/invalidating-cached-content).</td>
+    <td>Initiates a cache invalidation operation, invalidating the specified path, scoped to the specified UrlMap. For more information, see [Invalidating cached content](https://cloud.google.com/cdn/docs/invalidating-cached-content).</td>
 </tr>
 </tbody>
 </table>
@@ -749,7 +749,7 @@ EXEC google.compute.url_maps.validate
 </TabItem>
 <TabItem value="invalidate_cache">
 
-Initiates a cache invalidation operation, invalidating the specified path, scoped to the specified UrlMap. For more information, see [Invalidating cached content](/cdn/docs/invalidating-cached-content).
+Initiates a cache invalidation operation, invalidating the specified path, scoped to the specified UrlMap. For more information, see [Invalidating cached content](https://cloud.google.com/cdn/docs/invalidating-cached-content).
 
 ```sql
 EXEC google.compute.url_maps.invalidate_cache 

@@ -59,7 +59,7 @@ Successful response
 <tr>
     <td><CopyableCode code="authorizedNetwork" /></td>
     <td><code>string</code></td>
-    <td>The full name of the Google Compute Engine [network](/compute/docs/networks-and-firewalls#networks) to which the instance is connected. If left unspecified, the `default` network will be used.</td>
+    <td>The full name of the Google Compute Engine [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks) to which the instance is connected. If left unspecified, the `default` network will be used.</td>
 </tr>
 <tr>
     <td><CopyableCode code="createTime" /></td>
@@ -180,7 +180,7 @@ Successful response
 <tr>
     <td><CopyableCode code="authorizedNetwork" /></td>
     <td><code>string</code></td>
-    <td>The full name of the Google Compute Engine [network](/compute/docs/networks-and-firewalls#networks) to which the instance is connected. If left unspecified, the `default` network will be used.</td>
+    <td>The full name of the Google Compute Engine [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks) to which the instance is connected. If left unspecified, the `default` network will be used.</td>
 </tr>
 <tr>
     <td><CopyableCode code="createTime" /></td>
@@ -584,7 +584,7 @@ response
     - name: authorizedNetwork
       value: string
       description: >
-        The full name of the Google Compute Engine [network](/compute/docs/networks-and-firewalls#networks) to which the instance is connected. If left unspecified, the `default` network will be used.
+        The full name of the Google Compute Engine [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks) to which the instance is connected. If left unspecified, the `default` network will be used.
         
     - name: zones
       value: array
