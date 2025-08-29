@@ -106,6 +106,7 @@ npm run generate-docs -- \
   --provider-dir ./openapi/src/googleadmin/v00.00.00000 \
   --output-dir ./website/googleadmin \
   --provider-data-dir ./docgen/provider-data/googleadmin
+sh bin/fix-broken-links-googleadmin.sh  
 
 # googleworkspace
 rm -rf ./website/googleworkspace/docs/*
@@ -114,6 +115,7 @@ npm run generate-docs -- \
   --provider-dir ./openapi/src/googleworkspace/v00.00.00000 \
   --output-dir ./website/googleworkspace \
   --provider-data-dir ./docgen/provider-data/googleworkspace
+sh bin/fix-broken-links-googleworkspace.sh 
 
 # firebase
 rm -rf ./website/firebase/docs/*
@@ -122,6 +124,7 @@ npm run generate-docs -- \
   --provider-dir ./openapi/src/firebase/v00.00.00000 \
   --output-dir ./website/firebase \
   --provider-data-dir ./docgen/provider-data/firebase
+sh bin/fix-broken-links-firebase.sh  
 ```  
 
 ### 8. Test web docs locally

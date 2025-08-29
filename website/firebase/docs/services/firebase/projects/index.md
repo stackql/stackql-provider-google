@@ -54,7 +54,7 @@ Successful response
 <tr>
     <td><CopyableCode code="name" /></td>
     <td><code>string</code></td>
-    <td>The resource name of the Project, in the format: projects/PROJECT_IDENTIFIER PROJECT_IDENTIFIER: the Project's [`ProjectNumber`](../projects#FirebaseProject.FIELDS.project_number) ***(recommended)*** or its [`ProjectId`](../projects#FirebaseProject.FIELDS.project_id). Learn more about using project identifiers in Google's [AIP 2510 standard](https://google.aip.dev/cloud/2510). Note that the value for PROJECT_IDENTIFIER in any response body will be the `ProjectId`.</td>
+    <td>The resource name of the Project, in the format: projects/PROJECT_IDENTIFIER PROJECT_IDENTIFIER: the Project's [`ProjectNumber`](https://firebase.google.com/docs/reference/firebase-management/rest/v1beta1/projects#FirebaseProject.FIELDS.project_number) ***(recommended)*** or its [`ProjectId`](https://firebase.google.com/docs/reference/firebase-management/rest/v1beta1/projects#FirebaseProject.FIELDS.project_id). Learn more about using project identifiers in Google's [AIP 2510 standard](https://google.aip.dev/cloud/2510). Note that the value for PROJECT_IDENTIFIER in any response body will be the `ProjectId`.</td>
 </tr>
 <tr>
     <td><CopyableCode code="annotations" /></td>
@@ -110,7 +110,7 @@ Successful response
 <tr>
     <td><CopyableCode code="name" /></td>
     <td><code>string</code></td>
-    <td>The resource name of the Project, in the format: projects/PROJECT_IDENTIFIER PROJECT_IDENTIFIER: the Project's [`ProjectNumber`](../projects#FirebaseProject.FIELDS.project_number) ***(recommended)*** or its [`ProjectId`](../projects#FirebaseProject.FIELDS.project_id). Learn more about using project identifiers in Google's [AIP 2510 standard](https://google.aip.dev/cloud/2510). Note that the value for PROJECT_IDENTIFIER in any response body will be the `ProjectId`.</td>
+    <td>The resource name of the Project, in the format: projects/PROJECT_IDENTIFIER PROJECT_IDENTIFIER: the Project's [`ProjectNumber`](https://firebase.google.com/docs/reference/firebase-management/rest/v1beta1/projects#FirebaseProject.FIELDS.project_number) ***(recommended)*** or its [`ProjectId`](https://firebase.google.com/docs/reference/firebase-management/rest/v1beta1/projects#FirebaseProject.FIELDS.project_id). Learn more about using project identifiers in Google's [AIP 2510 standard](https://google.aip.dev/cloud/2510). Note that the value for PROJECT_IDENTIFIER in any response body will be the `ProjectId`.</td>
 </tr>
 <tr>
     <td><CopyableCode code="annotations" /></td>
@@ -186,7 +186,7 @@ The following methods are available for this resource:
     <td><CopyableCode code="update" /></td>
     <td><a href="#parameter-projectsId"><code>projectsId</code></a></td>
     <td><a href="#parameter-updateMask"><code>updateMask</code></a></td>
-    <td>Updates the attributes of the specified FirebaseProject. All [query parameters](#query-parameters) are required.</td>
+    <td>Updates the attributes of the specified FirebaseProject. All [query parameters](https://firebase.google.com/docs/reference/firebase-management/rest/v1beta1/projects/list#query-parameters) are required.</td>
 </tr>
 <tr>
     <td><a href="#search_apps"><CopyableCode code="search_apps" /></a></td>
@@ -304,7 +304,7 @@ AND showDeleted = '{{ showDeleted }}';
 >
 <TabItem value="patch">
 
-Updates the attributes of the specified FirebaseProject. All [query parameters](#query-parameters) are required.
+Updates the attributes of the specified FirebaseProject. All [query parameters](https://firebase.google.com/docs/reference/firebase-management/rest/v1beta1/projects/list#query-parameters) are required.
 
 ```sql
 UPDATE firebase.firebase.projects
