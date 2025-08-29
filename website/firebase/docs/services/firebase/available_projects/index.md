@@ -63,7 +63,7 @@ Successful response
 <tr>
     <td><CopyableCode code="project" /></td>
     <td><code>string</code></td>
-    <td>The resource name of the Google Cloud `Project` to which Firebase resources can be added, in the format: projects/PROJECT_IDENTIFIER Refer to the `FirebaseProject` [`name`](../projects#FirebaseProject.FIELDS.name) field for details about PROJECT_IDENTIFIER values.</td>
+    <td>The resource name of the Google Cloud `Project` to which Firebase resources can be added, in the format: projects/PROJECT_IDENTIFIER Refer to the `FirebaseProject` [`name`](https://firebase.google.com/docs/reference/firebase-management/rest/v1beta1/projects#FirebaseProject.FIELDS.name) field for details about PROJECT_IDENTIFIER values.</td>
 </tr>
 </tbody>
 </table>

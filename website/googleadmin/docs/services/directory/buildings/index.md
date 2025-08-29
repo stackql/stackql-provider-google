@@ -54,7 +54,7 @@ Successful response
 <tr>
     <td><CopyableCode code="address" /></td>
     <td><code>object</code></td>
-    <td>The postal address of the building. See [`PostalAddress`](/my-business/reference/rest/v4/PostalAddress) for details. Note that only a single address line and region code are required. (id: BuildingAddress)</td>
+    <td>The postal address of the building. See [`PostalAddress`](https://developers.google.com/my-business/reference/rest/v4/PostalAddress) for details. Note that only a single address line and region code are required. (id: BuildingAddress)</td>
 </tr>
 <tr>
     <td><CopyableCode code="buildingId" /></td>
@@ -110,7 +110,7 @@ Successful response
 <tr>
     <td><CopyableCode code="address" /></td>
     <td><code>object</code></td>
-    <td>The postal address of the building. See [`PostalAddress`](/my-business/reference/rest/v4/PostalAddress) for details. Note that only a single address line and region code are required. (id: BuildingAddress)</td>
+    <td>The postal address of the building. See [`PostalAddress`](https://developers.google.com/my-business/reference/rest/v4/PostalAddress) for details. Note that only a single address line and region code are required. (id: BuildingAddress)</td>
 </tr>
 <tr>
     <td><CopyableCode code="buildingId" /></td>
@@ -401,7 +401,7 @@ kind
     - name: address
       value: object
       description: >
-        The postal address of the building. See [`PostalAddress`](/my-business/reference/rest/v4/PostalAddress) for details. Note that only a single address line and region code are required.
+        The postal address of the building. See [`PostalAddress`](https://developers.google.com/my-business/reference/rest/v4/PostalAddress) for details. Note that only a single address line and region code are required.
         
     - name: coordinatesSource
       value: string
