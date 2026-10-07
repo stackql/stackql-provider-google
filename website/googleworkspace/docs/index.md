@@ -24,6 +24,7 @@ Google Workspace services.
 
 total services: __5__  
 total resources: __57__  
+source project: __[stackql-provider-google](https://github.com/stackql-registry/stackql-provider-google)__  
 
 :::
 

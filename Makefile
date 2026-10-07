@@ -15,6 +15,7 @@
 #   - stackql-provider-tests cloned as a sibling (metadata tests; WSL is used on Windows)
 
 SHELL := sh
+SOURCE_PROJECT ?= https://github.com/stackql-registry/stackql-provider-google
 
 .PHONY: all install generate test smoke-test smoke-test-live docs docs-build clean \
 	generate-google generate-googleworkspace generate-googleadmin generate-firebase \
@@ -91,7 +92,8 @@ docs-google:
 	  --provider-name google \
 	  --provider-dir ./openapi/src/googleapis.com/v00.00.00000 \
 	  --output-dir ./website/google \
-	  --provider-data-dir ./docgen/provider-data/google
+	  --provider-data-dir ./docgen/provider-data/google \
+	  --source-project $(SOURCE_PROJECT)
 	sh bin/fix-broken-links-google.sh
 	node bin/fix-mdx-braces.mjs website/google/docs
 	node bin/verify-mdx.mjs website/google/docs
@@ -102,7 +104,8 @@ docs-googleworkspace:
 	  --provider-name googleworkspace \
 	  --provider-dir ./openapi/src/googleworkspace/v00.00.00000 \
 	  --output-dir ./website/googleworkspace \
-	  --provider-data-dir ./docgen/provider-data/googleworkspace
+	  --provider-data-dir ./docgen/provider-data/googleworkspace \
+	  --source-project $(SOURCE_PROJECT)
 	sh bin/fix-broken-links-googleworkspace.sh
 	node bin/fix-mdx-braces.mjs website/googleworkspace/docs
 	node bin/verify-mdx.mjs website/googleworkspace/docs
@@ -113,7 +116,8 @@ docs-googleadmin:
 	  --provider-name googleadmin \
 	  --provider-dir ./openapi/src/googleadmin/v00.00.00000 \
 	  --output-dir ./website/googleadmin \
-	  --provider-data-dir ./docgen/provider-data/googleadmin
+	  --provider-data-dir ./docgen/provider-data/googleadmin \
+	  --source-project $(SOURCE_PROJECT)
 	sh bin/fix-broken-links-googleadmin.sh
 	node bin/fix-mdx-braces.mjs website/googleadmin/docs
 	node bin/verify-mdx.mjs website/googleadmin/docs
@@ -124,7 +128,8 @@ docs-firebase:
 	  --provider-name firebase \
 	  --provider-dir ./openapi/src/firebase/v00.00.00000 \
 	  --output-dir ./website/firebase \
-	  --provider-data-dir ./docgen/provider-data/firebase
+	  --provider-data-dir ./docgen/provider-data/firebase \
+	  --source-project $(SOURCE_PROJECT)
 	sh bin/fix-broken-links-firebase.sh
 	node bin/fix-mdx-braces.mjs website/firebase/docs
 	node bin/verify-mdx.mjs website/firebase/docs

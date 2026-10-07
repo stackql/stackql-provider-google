@@ -22,6 +22,7 @@ Application development platform for creating mobile and web applications.
 
 total services: __15__  
 total resources: __96__  
+source project: __[stackql-provider-google](https://github.com/stackql-registry/stackql-provider-google)__  
 
 :::
 

@@ -14,6 +14,7 @@ async function generateDocs() {
   const providerDir = getArg('--provider-dir');
   const outputDir = getArg('--output-dir');
   const providerDataDir = getArg('--provider-data-dir');
+  const sourceProject = getArg('--source-project');
 
   if (!providerName || !providerDir || !outputDir || !providerDataDir) {
     console.error('Error: Missing required arguments');
@@ -31,7 +32,8 @@ async function generateDocs() {
       providerName,
       providerDir,
       outputDir,
-      providerDataDir
+      providerDataDir,
+      sourceProject
     });
     
     console.log('Documentation generated successfully:', result);
