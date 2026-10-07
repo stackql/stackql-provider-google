@@ -2,6 +2,19 @@ import { providerTitle } from './provider.js';
 
 const sidebars = {
   mainSidebar: [
+    // Way back to the main stackql.io docs, as on the query library site.
+    // '/stackqldocs' is a shared-config redirect route (registered on this
+    // site by the vendored redirects plugin) that forwards to
+    // https://stackql.io/, so the link renders as internal - no external-link
+    // icon - and the broken-link checker validates it. The arrow and the
+    // divider come from the .sidebar-back-link rules in src/css/global.css.
+    {
+      type: 'link',
+      label: 'Back to StackQL Docs',
+      href: '/stackqldocs',
+      className: 'sidebar-back-link',
+    },
+    // '/providers' is likewise a shared redirect, to https://stackql.io/providers.
     { type: 'link', label: 'All Providers', href: '/providers' },
     {
       type: 'category',
