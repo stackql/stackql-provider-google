@@ -1,0 +1,9 @@
+# Netlify site: google-provider.stackql.io
+# Base directory (set in Netlify UI): website/google
+
+[build]
+  command = "yarn build"
+  publish = "build"
+
+[build.environment]
+  NODE_VERSION = "22"

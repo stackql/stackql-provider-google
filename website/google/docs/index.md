@@ -24,6 +24,7 @@ Cloud services from Google.
 
 total services: __186__  
 total resources: __2357__  
+source project: __[stackql-provider-google](https://github.com/stackql-registry/stackql-provider-google)__  
 
 :::
 

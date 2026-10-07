@@ -285,3 +285,23 @@ div:has(> .vhsImage) {
     content: url('/img/stackql-registry-logo-white-mobile.svg');
   }
 }
+
+/*
+* sidebar: back link to the main stackql.io docs (the first item in
+* sidebars.js). Same treatment as the query library site: bold label,
+* leading arrow drawn here so the label stays plain text, divider below.
+*/
+.sidebar-back-link {
+  border-bottom: 1px solid var(--ifm-color-emphasis-300);
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.5rem !important;
+}
+
+.sidebar-back-link .menu__link {
+  font-weight: 600;
+}
+
+.sidebar-back-link .menu__link::before {
+  content: '\2190';
+  margin-right: 0.5rem;
+}

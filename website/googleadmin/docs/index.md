@@ -22,6 +22,7 @@ Google Workspace identity services.
 
 total services: __1__  
 total resources: __30__  
+source project: __[stackql-provider-google](https://github.com/stackql-registry/stackql-provider-google)__  
 
 :::
 
